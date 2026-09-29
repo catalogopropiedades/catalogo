@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Catálogo de casas, departamentos y terrenos en venta de 3M Consultora en Asunción, Gran Asunción y Cordillera.">
+<meta property="og:title" content="Propiedades en venta · 3M Consultora">
+<meta property="og:description" content="Casas, departamentos y terrenos en venta en Asunción, Gran Asunción y Cordillera.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1d1e1c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 11.5L12 4l9 7.5' stroke='%2394793f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5.2 10.3V20h13.6v-9.7' stroke='%2394793f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Propiedades en venta · 3M Consultora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: slim sticky bar, a short intro with live counts, type chips + filters, then a photo-first grid; detail opens as a large sheet. */
+:root{
+  --bg:#f2f2ef; --surface:#fbfbf9; --ink:#1d1e1c; --muted:#6f6d67; --line:#dfddd6;
+  --gold:#94793f; --gold-soft:rgba(148,121,63,.12); --scrim:rgba(18,19,18,.55);
+  --ok:#3f6b4f; --warn:#9a6b1f; --bad:#a3453b;
+  --font-display:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --font-body:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --radius:4px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121312; --surface:#1b1c1b; --ink:#ecebe6; --muted:#9d9a92; --line:#2e2f2c;
+    --gold:#b99c61; --gold-soft:rgba(185,156,97,.14); --scrim:rgba(0,0,0,.65);
+    --ok:#7fb08f; --warn:#d0a45a; --bad:#d9847a; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121312; --surface:#1b1c1b; --ink:#ecebe6; --muted:#9d9a92; --line:#2e2f2c;
+  --gold:#b99c61; --gold-soft:rgba(185,156,97,.14); --scrim:rgba(0,0,0,.65);
+  --ok:#7fb08f; --warn:#d0a45a; --bad:#d9847a; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0; min-height:100%; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit; color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.wrap{max-width:1180px; margin:0 auto; padding-inline:clamp(16px,4vw,40px)}
+[hidden]{display:none!important}
+
+/* Bar */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:60px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand-mark{display:flex; flex-direction:column; line-height:1}
+.brand-3m{font-family:var(--font-display); font-size:22px; color:var(--gold); letter-spacing:.04em}
+.brand-sub{font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+.bar-actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+.btn{border:1px solid var(--line); background:transparent; border-radius:var(--radius); padding:8px 14px; font-size:13px; font-weight:500; display:inline-flex; align-items:center; gap:6px; text-decoration:none; color:var(--ink); white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn-solid{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.btn-solid:hover{opacity:.88}
+.btn-gold{border-color:var(--gold); color:var(--gold)}
+.btn-danger{border-color:var(--bad); color:var(--bad)}
+.btn[aria-pressed="true"]{background:var(--gold-soft); border-color:var(--gold); color:var(--gold)}
+
+/* Intro */
+.intro{padding-block:clamp(28px,5vw,56px) 20px; display:grid; gap:18px; grid-template-columns:1fr; align-items:end}
+@media (min-width:860px){.intro{grid-template-columns:1.3fr 1fr}}
+.eyebrow{font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin:0 0 10px}
+.intro h1{font-family:var(--font-display); font-weight:400; font-size:clamp(32px,5vw,54px); line-height:1.05; margin:0; text-wrap:balance; letter-spacing:.005em}
+.intro p.lede{color:var(--muted); margin:14px 0 0; max-width:52ch}
+.counts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line)}
+.count{flex:1 1 90px; padding:12px 14px 4px 0}
+.count b{display:block; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1; font-variant-numeric:tabular-nums}
+.count span{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+
+/* Filters */
+.filters{display:flex; flex-direction:column; gap:12px; padding-block:14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:22px}
+.chips{display:flex; gap:6px; flex-wrap:wrap}
+.chip{border:1px solid var(--line); background:transparent; border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.chip small{opacity:.7; margin-left:4px; font-variant-numeric:tabular-nums}
+.filter-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.filter-row input[type=search]{flex:1 1 220px; min-width:0; padding:9px 12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
+.filter-row select{padding:9px 10px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); max-width:100%}
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-left:auto}
+.seg button{border:0; background:transparent; padding:8px 14px; font-size:13px; color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.result-count{font-size:12px; color:var(--muted); letter-spacing:.06em; margin:-8px 0 16px}
+
+/* Grid */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:28px 22px; padding-bottom:64px}
+.card{display:flex; flex-direction:column; background:none; border:0; padding:0; text-align:left; color:inherit; cursor:pointer}
+.card-media{position:relative; aspect-ratio:4/3; max-width:100%; overflow:hidden; border-radius:var(--radius); background:var(--line)}
+.card-media img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease}
+.card:hover .card-media img{transform:scale(1.035)}
+.card-tags{position:absolute; top:10px; left:10px; right:10px; display:flex; justify-content:space-between; gap:6px; pointer-events:none}
+.tag{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; padding:4px 8px; border-radius:2px; background:rgba(16,17,16,.62); color:#f1efe9; backdrop-filter:blur(4px)}
+.tag.reservada{background:rgba(154,107,31,.88)} .tag.vendida{background:rgba(163,69,59,.9)}
+.photo-count{position:absolute; right:10px; bottom:10px; font-size:11px; padding:3px 7px; border-radius:2px; background:rgba(16,17,16,.6); color:#f1efe9; font-variant-numeric:tabular-nums}
+.no-photo{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--muted); font-size:12px; letter-spacing:.08em;
+  background:repeating-linear-gradient(135deg, transparent 0 11px, color-mix(in srgb, var(--muted) 10%, transparent) 11px 12px), var(--surface)}
+.card-body{padding-top:12px; display:grid; gap:4px}
+.card-zone{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold)}
+.card-title{font-family:var(--font-display); font-size:20px; line-height:1.2; margin:0; text-wrap:balance}
+.card-foot{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-top:4px; padding-top:8px; border-top:1px solid var(--line)}
+.facts{font-size:13px; color:var(--muted); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.price{font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.price.ask{font-weight:500; color:var(--muted)}
+.empty-state{padding:60px 0; text-align:center; color:var(--muted)}
+.empty-state h2{font-family:var(--font-display); font-weight:400; color:var(--ink); margin:0 0 6px}
+
+/* Map */
+.map{position:relative; width:100%; max-width:100%; aspect-ratio:4/3; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+  background:linear-gradient(var(--line) 1px, transparent 1px) 0 0/48px 48px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/48px 48px, var(--surface); margin-bottom:10px}
+@media (min-width:860px){.map{aspect-ratio:16/9}}
+.map-ref{position:absolute; width:5px; height:5px; border-radius:50%; background:var(--muted); opacity:.6; transform:translate(-50%,-50%)}
+.map-ref-label{position:absolute; font-size:11px; color:var(--muted); transform:translate(7px,-50%); white-space:nowrap; pointer-events:none}
+.map-pin{position:absolute; transform:translate(-50%,-100%); cursor:pointer; z-index:2; border:0; background:none; padding:0}
+.map-pin .dot{width:16px; height:16px; border-radius:50% 50% 50% 0; background:var(--gold); border:2px solid var(--surface); transform:rotate(-45deg); box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.map-pin.reservada .dot{background:var(--warn)} .map-pin.vendida .dot{background:var(--bad)}
+.map-pin .tip{position:absolute; bottom:22px; left:50%; transform:translateX(-50%); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:var(--radius); padding:6px; font-size:12px; width:170px; text-align:left; box-shadow:0 6px 20px rgba(0,0,0,.18); display:none}
+.map-pin .tip img{width:100%; height:80px; object-fit:cover; border-radius:2px; display:block; margin-bottom:5px}
+.map-pin:hover .tip,.map-pin:focus .tip{display:block}
+.map-note{font-size:12px; color:var(--muted); margin:0 0 64px}
+
+/* Overlays */
+.overlay{position:fixed; inset:0; z-index:30; background:var(--scrim); display:flex; align-items:flex-end; justify-content:center}
+@media (min-width:720px){.overlay{align-items:center; padding:24px}}
+.sheet{background:var(--surface); color:var(--ink); width:100%; max-width:560px; max-height:94vh; overflow-y:auto; border-radius:10px 10px 0 0; padding:20px; padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+@media (min-width:720px){.sheet{border-radius:6px}}
+.sheet.wide{max-width:980px; padding:0}
+.sheet h2{font-family:var(--font-display); font-weight:400; font-size:26px; margin:0 0 6px}
+.sheet-actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; margin-top:18px}
+label{display:block; font-size:12px; letter-spacing:.06em; color:var(--muted); margin:14px 0 5px}
+.sheet input[type=text],.sheet input[type=number],.sheet input[type=url],.sheet select,.sheet textarea{width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:var(--radius); background:var(--bg)}
+.sheet textarea{min-height:80px; resize:vertical}
+.row2{display:flex; gap:8px} .row2>*{flex:1; min-width:0}
+.hint{font-size:12px; color:var(--muted); margin:6px 0 0}
+.err{color:var(--bad); font-size:13px; margin-top:10px}
+.upload-box{border:1px dashed var(--line); border-radius:var(--radius); padding:14px; text-align:center; color:var(--muted); font-size:13px; margin-top:6px; background:transparent; width:100%}
+.photo-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.photo-thumb{position:relative; width:76px; height:76px; border-radius:3px; overflow:hidden}
+.photo-thumb.cover{outline:2px solid var(--gold); outline-offset:2px}
+.photo-thumb img{width:100%; height:100%; object-fit:cover}
+.photo-thumb button{position:absolute; top:3px; width:22px; height:22px; border-radius:50%; border:0; padding:0; line-height:22px; font-size:12px; background:rgba(0,0,0,.6); color:#fff}
+.photo-thumb .coverBtn{left:3px} .photo-thumb .removeBtn{right:3px}
+.photo-thumb .coverBtn.active{background:var(--gold)}
+.confirm-box{margin-top:14px; padding:12px; border:1px solid var(--bad); border-radius:var(--radius); font-size:14px}
+
+/* Detail */
+.detail{display:grid; grid-template-columns:1fr}
+@media (min-width:860px){.detail{grid-template-columns:1.35fr 1fr}}
+.d-media{background:#111; position:relative; min-width:0}
+.d-hero{position:relative; aspect-ratio:4/3; max-width:100%; overflow:hidden; cursor:zoom-in}
+.d-hero img{width:100%; height:100%; object-fit:cover; display:block}
+.d-hero .no-photo{background:var(--surface)}
+.d-nav{position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; border:0; background:rgba(0,0,0,.5); color:#fff; font-size:20px; line-height:1}
+.d-prev{left:10px} .d-next{right:10px}
+.d-thumbs{display:flex; gap:4px; overflow-x:auto; padding:4px; background:#111}
+.d-thumbs button{flex:0 0 auto; border:0; padding:0; width:64px; height:48px; opacity:.55; background:none}
+.d-thumbs button[aria-current="true"]{opacity:1; outline:1px solid var(--gold)}
+.d-thumbs img{width:100%; height:100%; object-fit:cover; display:block}
+.d-info{padding:24px; min-width:0; display:flex; flex-direction:column}
+.d-close{position:absolute; top:10px; right:10px; z-index:3; width:34px; height:34px; border-radius:50%; border:0; background:rgba(0,0,0,.55); color:#fff; font-size:16px}
+.d-price{font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; margin:4px 0 14px}
+.d-facts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:16px}
+.d-fact{flex:1 1 90px; padding:10px 10px 10px 0}
+.d-fact b{display:block; font-size:16px; font-weight:600; font-variant-numeric:tabular-nums}
+.d-fact span{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.d-notes{white-space:pre-wrap; color:var(--ink); opacity:.86; margin:0 0 14px; max-width:65ch}
+.d-addr{color:var(--muted); font-size:14px; margin:0 0 4px}
+.d-link{color:var(--gold); font-size:14px; text-decoration:none}
+.d-link:hover{text-decoration:underline}
+.internal{margin:14px 0 0; padding:10px 12px; border-left:2px solid var(--warn); background:color-mix(in srgb, var(--warn) 9%, transparent); font-size:13px}
+.internal b{display:block; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--warn); margin-bottom:2px}
+.d-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:20px}
+
+/* Lightbox */
+#lightbox{position:fixed; inset:0; z-index:50; background:rgba(8,8,8,.94); display:flex; align-items:center; justify-content:center}
+#lightbox img{max-width:94vw; max-height:88vh; object-fit:contain}
+#lightbox .lb-btn{position:absolute; border:0; background:rgba(255,255,255,.12); color:#fff; width:42px; height:42px; border-radius:50%; font-size:20px}
+#lbPrev{left:14px; top:50%; transform:translateY(-50%)} #lbNext{right:14px; top:50%; transform:translateY(-50%)} #lbClose{top:14px; right:14px; font-size:16px}
+#lbCount{position:absolute; bottom:16px; left:0; right:0; text-align:center; color:#ccc; font-size:12px; font-variant-numeric:tabular-nums}
+
+/* Flyer (image export; fixed look independent of theme) */
+#flyerCanvas{position:relative; width:100%; max-width:100%; aspect-ratio:4/5; border-radius:6px; overflow:hidden; background:#1b1b19; margin:10px 0 14px; font-family:var(--font-body)}
+#flyerCanvas .flyer-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.02) brightness(.96)}
+#flyerCanvas .flyer-top-scrim{position:absolute; left:0; right:0; top:0; height:46%; background:linear-gradient(to bottom, rgba(8,12,16,.6), rgba(8,12,16,.25) 60%, rgba(8,12,16,0))}
+#flyerCanvas .flyer-bottom-scrim{position:absolute; left:0; right:0; bottom:0; height:30%; background:linear-gradient(to top, rgba(8,12,16,.55), rgba(8,12,16,0))}
+#flyerCanvas .flyer-logo{position:absolute; top:4.5%; right:5%; display:flex; align-items:center; gap:5px}
+#flyerCanvas .flyer-logo-3m{color:#af8f4e; font-family:var(--font-display); font-size:15px; letter-spacing:.5px; line-height:1}
+#flyerCanvas .flyer-logo-sub{color:#b9b6ae; font-size:6.5px; letter-spacing:1.4px; text-transform:uppercase; line-height:1; margin-top:2px}
+#flyerCanvas .flyer-head{position:absolute; left:6%; right:28%; top:6%; color:#fff}
+#flyerCanvas .flyer-status{display:block; font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#cdb88a; margin-bottom:6px}
+#flyerCanvas .flyer-title{font-family:var(--font-display); font-size:19px; margin:0 0 4px; line-height:1.15; text-shadow:0 1px 6px rgba(0,0,0,.4)}
+#flyerCanvas .flyer-addr{font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#e3e0d8; margin:0 0 9px}
+#flyerCanvas .flyer-price{display:inline-block; background:rgba(10,14,18,.7); border:1px solid rgba(175,143,78,.8); color:#e8dcc0; font-weight:600; font-size:13px; padding:5px 11px; border-radius:3px}
+#flyerCanvas .flyer-stats{position:absolute; left:0; right:0; bottom:5.5%; display:flex; justify-content:space-around; padding:0 5%; color:#fff}
+#flyerCanvas .flyer-stat{display:flex; flex-direction:column; align-items:center; gap:3px; max-width:32%; text-align:center}
+#flyerCanvas .flyer-stat b{font-size:11px; font-weight:600}
+#flyerCanvas .flyer-stat span{font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:#dcd9d1}
+
+.footer{border-top:1px solid var(--line); padding-block:22px 40px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+@media (max-width:520px){.seg{margin-left:0} .bar-actions .btn{padding:7px 10px}}
+</style>
+
+<style>body{padding-top:env(safe-area-inset-top,0px)}</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="3M Consultora">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.2 10.3V20h13.6v-9.7" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="brand-mark"><span class="brand-3m">3M</span><span class="brand-sub">Consultora</span></span>
+    </a>
+    <div class="bar-actions">
+      <a class="btn btn-gold" href="https://wa.me/595981869933" target="_blank" rel="noopener">Contactar</a>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="intro">
+    <div>
+      <p class="eyebrow">Catálogo de propiedades</p>
+      <h1>Casas, departamentos y terrenos en venta</h1>
+      <p class="lede">Selección de propiedades de 3M Consultora en Asunción, Gran Asunción y Cordillera. Tocá una propiedad para ver fotos, detalles y ubicación.</p>
+    </div>
+    <div class="counts" id="counts">
+      <div class="count"><b>–</b><span>Propiedades</span></div>
+    </div>
+  </section>
+
+  <section class="filters" aria-label="Filtros">
+    <div class="chips" id="typeChips"></div>
+    <div class="filter-row">
+      <input type="search" id="searchInput" placeholder="Buscar por zona, barrio o característica" aria-label="Buscar">
+      <select id="filterZone" aria-label="Zona"><option value="">Todas las zonas</option></select>
+      <select id="filterCurrency" aria-label="Moneda">
+        <option value="">USD y Gs.</option><option value="USD">Solo USD</option><option value="Gs">Solo Gs.</option>
+      </select>
+      <select id="sortSelect" aria-label="Ordenar">
+        <option value="destacadas">Destacadas</option>
+        <option value="recientes">Más recientes</option>
+        <option value="precio_asc">Precio: menor a mayor</option>
+        <option value="precio_desc">Precio: mayor a menor</option>
+      </select>
+      <div class="seg" role="group" aria-label="Vista">
+        <button id="viewGridBtn" aria-pressed="true">Grilla</button>
+        <button id="viewMapBtn" aria-pressed="false">Mapa</button>
+      </div>
+    </div>
+  </section>
+
+  <p class="result-count" id="resultCount"></p>
+  <div class="grid" id="grid">
+    <div class="empty-state" style="grid-column:1/-1"><h2>Cargando propiedades</h2><p>En unos segundos aparecen las fichas con fotos y precios.</p></div>
+  </div>
+  <div id="mapWrap" hidden>
+    <div class="map" id="mapView"></div>
+    <p class="map-note" id="mapNote"></p>
+  </div>
+
+  <footer class="footer">
+    <span>3M Consultora · Inmobiliaria</span>
+    <span>Precios sujetos a confirmación. Consultá disponibilidad.</span>
+  </footer>
+</main>
+
+<!-- Detail -->
+<div class="overlay" id="detailOverlay" hidden>
+  <div class="sheet wide" role="dialog" aria-modal="true" aria-labelledby="d_title">
+    <div class="detail">
+      <div class="d-media">
+        <button class="d-close" id="closeDetailBtn" aria-label="Cerrar">✕</button>
+        <div class="d-hero" id="dHero"></div>
+        <div class="d-thumbs" id="dThumbs"></div>
+      </div>
+      <div class="d-info">
+        <p class="eyebrow" id="d_zone"></p>
+        <h2 id="d_title"></h2>
+        <p class="d-price" id="d_price"></p>
+        <div class="d-facts" id="d_facts"></div>
+        <p class="d-notes" id="d_notes"></p>
+        <p class="d-addr" id="d_addr"></p>
+        
+        <div class="d-actions">
+          <a class="btn btn-gold" id="waBtn" target="_blank" rel="noopener" hidden>Consultar por WhatsApp</a>
+          <a class="btn" id="d_maps" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6"/></svg>Ver en Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="lightbox" hidden>
+  <button class="lb-btn" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-btn" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-btn" id="lbNext" aria-label="Siguiente">›</button>
+  <div id="lbCount"></div>
+</div>
+
+
+<script>window.PROPERTIES = [{"address": "Villa Elisa – a pasos de Avda. Colonia Elisa y Acceso Sur", "createdAt": 1790708500000, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/5dHuCwtSXLkR4qEFA?g_st=awb", "notes": "Terreno 100 m², construido 70 m². Living/comedor, cocina amoblada, 2 dormitorios, 1 baño, quincho, estacionamiento para 2 vehículos. Zona estratégica con todo al alcance.", "photoIds": ["85689e27b24edceb2a5a82d2e9c19daa", "a4293a1c8f869f7472b6925e9fe02f48", "4ca10dae249aa404a0bc91f2486935fc", "9348abb9db53f8bacc582f815df18393"], "price": 350000000, "status": "disponible", "title": "Chalet en Villa Elisa", "id": "chalet-villa-elisa"}, {"address": "Puerta del Lago, San Bernardino – frente al Lago Ypacaraí", "createdAt": 1790708000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Residencia moderna con vista directa al lago. Planta alta: 2 amplias suites y 1 Master Suite con mayor comodidad y luminosidad. Planta baja: 3 habitaciones en suite, amplio living-comedor integrado, cocina práctica y funcional, baño social, habitación con baño para área de servicio. Exterior: amplio patio, piscina y vista directa al lago.", "photoIds": ["0e8f90dc0753adbef12e9c82e349a444", "f5fffc6e8daad60509b8679e91449e09", "db1861c6f7bd54ffc3556970b5cdd038", "f6f01d5454c2a70c10d3510f81e3248a", "11dca7da84c42b970ace8cc4041c3a00", "f51081593d16c19454f64dbf03732868", "7216788e77feea3355af1600b3c3f5d6", "897d4cdad85340dd598bcc40989381c9", "aed67a3ea8ce5b234c0e9fc3fe0781dd", "a4440c73e3e0000af1bb3844ff8689c0"], "price": 1200000, "status": "disponible", "title": "Residencia de Lujo en Puerta del Lago – Frente al Lago", "id": "puerta-del-lago-frente-lago"}, {"address": "Puerta del Lago, San Bernardino – a 300m del Lago Ypacaraí, sobre doble avenida principal", "createdAt": 1790700000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/LYQmiS6vVraxx8qc6?g_st=awb", "notes": "Superficie 890,86 m². Incluye mobiliario, amenities y equipamiento existente. Casa principal con amplia galería, galería rústica (techo kapi'i), living principal con mobiliario integrado, comedor full equipped, cocina funcional integrada, 5 dormitorios con placares y mobiliario incorporado, Master Suite con hidromasaje, todos los ambientes climatizados. Amplio patio y áreas verdes, piscina con media sombra, quincho con parrilla y área social exterior, dormitorio independiente y baño social, pergolados. Incluye TV, sistema de sonido, equipos de frío, sillones, reposeras y mobiliario exterior, cuadriciclo, UTV recreativo, mesa de pool y demás equipamiento recreativo. Ideal para disfrute familiar o inversión en zona de veraneo consolidada.", "photoIds": ["f0d4380260e052c84f0f89e6e201b7b1", "3b171ead8a28b64cb881609344eeffdb", "1eb32928b05831adbb30f348d96550c9", "f4266541ee17a41ae9018a594a5fd2b1", "7b2f7b7cd8276d93f0c6c23b2e3c6f72", "deee0164b13ab167827f90ab1b20fe0d", "4a392525d1b53ce09737940afd397eff", "85f7bb65efdef84e40e6b87f4af6748b", "127acb6e1dbb246c5c8e017ec99c2c3b", "3d6975327908918cdc92c85c91389909"], "price": 450000, "status": "disponible", "title": "Exclusiva Casa de Verano en Puerta del Lago – San Bernardino", "id": "puerta-del-lago-sanber"}, {"address": "Villa Morra, Asunción", "createdAt": 1790466287801, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "5° piso, depto 503, 65 m². Living, cocina/comedor, 1 dormitorio, vestidor, 1 baño, área de lavado, balcón, estacionamiento propio. Amenities: piscina, salón social, gimnasio, patio interno.", "photoIds": ["74ce25ec29be4fdee746ce6c65e2de0f", "eeb8a03bdf3d8a795a06023ea2f6797a", "a57d8bac9c3ba3bd5e8bfa87e7984ff8", "e9681b5638c25ee8f05c2263c3ede1ba", "d01210c23e341bc7ada32081cc33ff94", "3dce67c603069c27a0ed734b4e2c6ac6"], "price": 125000, "status": "disponible", "title": "Departamento en Edificio Garay 530", "id": "z3qfz3ha2ukae3i2mw91"}, {"address": "Ruta Asfaltada Gral. Marcial Samaniego, Itá, 3km Itá centro / 5km Itauguá centro", "createdAt": 1790466287498, "currency": "USD", "lat": -25.4874741, "lng": -57.3603012, "mapsUrl": "https://maps.app.goo.gl/Zy4Ux1u6F1zVF4zf7?g_st=awb", "notes": "Total 1.804,92 m², de esquina a esquina, sobre asfalto.", "photoIds": ["c5d06c24a0e2af8781233cf23b5b3609", "233b053c974d777cc5839b41a1dd73f7", "cfc3fdedad0c540f8d26dad0d3f0c319", "bb2e5c925a68dc254463c09415287207"], "price": null, "status": "disponible", "title": "Terrenos en Itá", "id": "unc2m4nw51dpqb1nk6pm"}, {"address": "Avda. Zavala cue, Fernando de la Mora Sur", "createdAt": 1790466287137, "currency": "Gs", "lat": -25.3340453, "lng": -57.5600421, "mapsUrl": "https://maps.app.goo.gl/UC1XLbVaXNHkNqz78?g_st=awb", "notes": "12x32m, 384 m² superficie, 360 m² construido. Tasación marzo 2025.", "photoIds": ["09f35d882e9093efa477c9b94d774d8b", "700e3079518617ca96ac1ab811e5c8c9", "d8c0de6c785e3fbf8fd24d322946a702", "709142fbd49e336ed878bf5d5b5b9b95", "25566f16b369ea9fa54b3f8260a1ccef", "a0030a69be3265ce2d99d66918b45e52", "30a3a1af1afbf3f826ad96486f5ffa8d"], "price": 810000000, "status": "disponible", "title": "Depósito tipo Tinglado – Fernando de la Mora Sur", "id": "0r0givlzfx7abmzapwhi"}, {"address": "Ñemby, Barrio Caaguazú, esquina", "createdAt": 1790466286788, "currency": "Gs", "lat": -25.4186702, "lng": -57.5204036, "mapsUrl": "https://maps.app.goo.gl/swBn96XQLLw2Cw37A", "notes": "2 dormitorios, hall de acceso, sala, cocina-comedor, 1 baño, lavadero, acceso vehicular para 2-3 vehículos, ubicación en esquina.", "photoIds": ["7242262bb2d0d2833898f80f7264d6f5", "76bb7d603307d36e857d2420db8312b6", "9d429d003aaba847ab75b7402789d181", "6f954ffb2249de5da27334557dcbc12d", "0c94395214ccaf3907a6632db43b6a8e", "275285d85a75b85581b77cdb56cf8fc5", "97cf1915aa0990749bdca79d57b85c46", "e5d0ca0fa575ebed25617d1f223a9d38", "9f21e0e5b7c3d87c69e8cbf79b272b7d", "0bbcab5d6967e25dfee066b187f84b2c"], "price": 380000000, "status": "disponible", "title": "Chalet en Ñemby – Barrio Caaguazú", "id": "8l6mys2vochlcbmqk5dk"}, {"address": "Fernando de la Mora, zona sur, zona Tigo", "createdAt": 1790466286381, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "", "notes": "Terreno 8x15 (120 m²), construido 180 m², estilo minimalista. Dormitorio en suite con vestidor y balcón, 2 dormitorios con placares, living integrado, cocina amoblada, depósito, lavandería, garaje 2 autos y baulera. Apto crédito bancario.", "photoIds": ["9efa7fa854d1f1d433fecd48a7c6d59e", "f1544d73fde3be1ae76347c7159cc6ac", "78fcd01c2787ddde89c3bcaba0fcc829", "13c35b13dd4a546486067cf7c036e3dd", "d51801be691d4fa37fefcdefa14f8421", "61c8497719902e9879633dd991e0b340", "a8d17d1b3508f0daea68ee3e9e255456", "285c6188c995b7488bfeb79115d72386", "b434626152785859345656bb7946e654", "9402a25dc65f0b02056fd4c7d8fef867"], "price": 620000000, "status": "disponible", "title": "Dúplex 3 Dormitorios en Fernando de la Mora", "id": "d7rvslucuksg3c33hg5o"}, {"address": "Villeta", "createdAt": 1790466285964, "currency": "Gs", "lat": -25.5095172, "lng": -57.567968, "mapsUrl": "https://maps.app.goo.gl/h9fwj4fxZzhv9T8C9", "notes": "Terreno 736 m² (17x43,30), construcción aprox. 440 m², 3 habitaciones, 2 baños, salón comedor integrado, quincho con parrilla, estacionamiento para 4 vehículos, incluye 2 salones comerciales con renta activa.", "photoIds": ["4f01bc4410c9c122a0a40ab6719a2fe1", "d402789caae95a316f6557de93c88541", "fed103ea1886496186549ee28bbd9553", "0d44f823b97f84024ad700be4b046992", "a6ae2560dfc3a76756c38bac7c6c96f3", "5b6229a44a81e70f0b48652758c69f94", "ac301ff0eef08a806642fee5e5b6152f"], "price": 450000000, "status": "disponible", "title": "Casa en Venta en Villeta – Viví e Invertí", "id": "p0vbsa5p48jrkrarlew7"}, {"address": "Barrio San Juan, Itauguá, acceso desde Ruta PY02 Km 25, zona Piro'y", "createdAt": 1790466285558, "currency": "Gs", "lat": -25.3838112, "lng": -57.3928841, "mapsUrl": "https://maps.app.goo.gl/5e1nrdfZcjGZ3VpF6", "notes": "Terreno 12x30m (360 m²), construcción aprox. 100 m², 2 habitaciones, 1 baño, sala de estar, cocina, pequeño depósito, amplio patio frontal y trasero.", "photoIds": ["7d7b6779e84cb3651a0a5c0ee4fc736b", "41f9b51becc54d09e11d0a984f7b5eca", "78fc91b69dc0d3c81782bb920209cc11", "2e42b19cb15aca67b197d72f45d72d72", "686c3da904de6092ff07a4dad91c5d48", "685fe7561eb33456697ed2b669a5bf0f", "0ae0011597377637fab4c33d3382abdc"], "price": 270000000, "status": "disponible", "title": "Casa en Barrio San Juan – Itauguá", "id": "tah4nj16rfktabvmupao"}, {"address": "Luque, Zona Oga Ciudad Jardín", "createdAt": 1790466285149, "currency": "USD", "mapsUrl": "https://maps.app.goo.gl/NCPmr14jkkSTobvn7?g_st=awb", "notes": "Terreno de 5.300 m² (aprox. 150x35m). Ideal para condominio, dúplex, loteamiento, casa quinta o proyecto comercial.", "photoIds": [], "price": 320000, "status": "disponible", "title": "Terreno Estratégico en Luque – Ykua Karanday", "id": "duu9126rqbz8zzn089u2"}, {"address": "Las Mercedes, Asunción", "createdAt": 1790466284788, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://share.google/XmHEKrNkZfRfDSN16", "notes": "Monoambiente 38,5 m² (3er piso), cocina amoblada, placar, baño en suite, balcón, cochera 1 vehículo, piscina, quincho.", "photoIds": ["97ce7b8b214229e94274fbdd1ec67569", "3537137e354d9877055edc51c320c40d", "21e7e0afff2389d8de9abc55a90621b2", "0f5a88b61b447ecdf539116e49680cca", "d5dc3f9fe87b7c9e838e75ca3d8aa9a1", "da97025227a7e56a84c21415baf2ba12"], "price": 68700, "status": "disponible", "title": "Departamento en Edificio La Mercedia", "id": "fxtij339o81f1qyaku26"}, {"address": "Luque, Costa Sosa, a 600m de Avda. de Las Residentas", "createdAt": 1790466284392, "currency": "Gs", "lat": -25.294157, "lng": -57.454192, "mapsUrl": "https://maps.app.goo.gl/KZCzHKXe7w4ppGho7", "notes": "Terreno de 1.332 m² (25m frente x 53,30m fondo), plano, listo para construir, acceso por calle empedrada.", "photoIds": ["4eea2394ec8d9e4826a5a16a71d2b6a2", "315a36b47f8dd443da6f11595055c103", "04cec68886a6ec1dfd952f220e43f1d6", "fdc5db7f212a578d8f493a9432137099"], "price": 350000000, "status": "disponible", "title": "Terreno en Luque – Costa Sosa", "id": "e8ib08bco540291slu2n"}, {"address": "Barrio San Pablo", "createdAt": 1790365781195, "currency": "Gs", "lat": -25.3265421, "lng": -57.578075, "mapsUrl": "https://maps.app.goo.gl/XiACVCT3XagsDtU36?g_st=awb", "notes": "Superficie 360m². 4 dependencias, 2 baños, estacionamiento. Excelente ubicación y conectividad, buen potencial de aprovechamiento.", "photoIds": ["292385190de04beb4bec217800845081", "48a22e5f043c3c6490f4cf13fb63c686", "51a68c1c33644deebb09f8c88f0e22ab", "9dc87eb43aab81f2d553b62e7b98e814", "3ab30dfd4bf81dcf69e1287383ea4ce8", "48b06ecdf66b43bda55aff4a8487987d", "15ccf9a9df20a25cbe8cd63a7217ceb5", "106456e93cd2b745fb2abba4ce5ddbe6", "5cfc2892313cdac77811f85ae0231c96"], "price": 500000000, "status": "disponible", "title": "Propiedad en Barrio San Pablo", "id": "ghgfph59uuegjjzwo352"}, {"address": "Surubi'i, a 1.800m de la entrada principal", "createdAt": 1790365658052, "currency": "USD", "lat": -25.1809464, "lng": -57.5178091, "mapsUrl": "https://maps.app.goo.gl/FGJoKF2AbrvgjSr89?g_st=awb", "notes": "Superficie total 21.806m². Precio USD 110/m² (total aprox. USD 2.398.660). Oportunidad para desarrolladores e inversionistas.", "photoIds": ["3dc237915a310211be6ba5730e24b481", "463cf294be5ee81fad51effc81cbfe38", "51a8e39b0ef57cfcbb83919058ebf04b", "00227c945cc16b4b6612e81262fb10e4", "8cce800f284672dd9b9d518fea3151ef", "5595eb742766b1bdf802ded3a227aa3d", "448ca2b419e38ac12275de34fdce05fe", "c8cea7ee71d73193aa73c8d36306eb3f", "2fdcc763d88170970e4d47257665cc25", "02a342f394b13dbc58aec10eb5c4ce8f"], "price": 2398660, "status": "disponible", "title": "Exclusiva Propiedad en Surubi'i - Zona Alta", "id": "vcpzerifk0bv2aj0450i"}, {"address": "Villa Morra, Asunción", "createdAt": 1790365507084, "currency": "USD", "mapsUrl": "", "notes": "Terreno 1000m², construidos 1000m². PB: jardín frontal, garage techado 4 vehículos, hall y recibidor, living social, comedor social, baño social, comedor diario, TV room, cocina amoblada de alta calidad, galería tipo quincho, piscina climatizada exterior, área de servicio completa (dormitorio, baño, lavadero, depósito). 1er piso: doble escalera de acceso, doble estar íntimo, 3 dormitorios en suite con vestidor. 2do piso (Máster Suite): estar íntimo, living con chimenea, dormitorio principal amplio, 2 baños con hidromasaje, vestidor tipo máster, salón privado con piscina cerrada y estar.", "photoIds": ["6371b514867dca064f1feff729053e2e", "e6230aedd337897128e00745a5dfd739", "b532d67642f99ea09ddb4926a71f5384", "351bd51e89053006199f83e7d32f03ec"], "price": 1600000, "status": "disponible", "title": "Exclusiva Mansión en Villa Morra", "id": "1bgtpcddmnaphl001yyg"}, {"address": "Sobre Antequera, entre Azara y Herrera, Asunción", "createdAt": 1790365314450, "currency": "Gs", "lat": -25.2874361, "lng": -57.6307985, "mapsUrl": "https://maps.app.goo.gl/bXGAoEgenErZXt7M9", "notes": "Superficie 110,81m². Expensa mensual Gs. 500.000. Living/comedor amplio y luminoso, cocina amoblada, 3 dormitorios, 2 baños modernos.", "photoIds": ["020cafdfcc4c3f609b2322cb78cc3deb", "914042dbdfd80d223890c4aacb0e87a7", "35d63a84f84a748d14c466acf3df2f1c", "af0623334a650019572a53dc04bf7ef6", "023e20a391978f47651367c977a33ccf", "9b4172b3fdbc0e5dba8556b5dd453df8", "98204e308127e58c88a814a67a052f54", "b6d3469ed74eb3dfb060c509a1de1830"], "price": 500000000, "status": "disponible", "title": "Departamento en Edificio Alfar II – Zona Centro", "id": "5ln5qtjf7kqxhmqriyto"}, {"address": "San Lorenzo", "createdAt": 1790363813332, "currency": "Gs", "mapsUrl": "https://maps.app.goo.gl/51hKMXLkRCNZCyYA8", "notes": "Terreno 16x25m (400m²), construida aprox. 300m². PB: hall de acceso, living comedor amplio, cocina equipada, oficina/estudio, 1 dormitorio en suite, dormitorio de servicio, baño social, quincho, patio amplio, piscina. PA: 2 dormitorios, 1 baño compartido.", "photoIds": ["676135d48cef548378a2a005eb46fed9", "650c652d317832bdff0a19c90d1d347e", "eca8abf7acd78cdf774ecc2aa4848250", "b100653253b75a71bc02d41e10b420f4", "c88760a5df01ae1eedaecf81c265f7cd", "f77433f194f2107911e96758d1af75be", "0a31d2b9113a32ee08ef65518f11d81a", "4382e2c878afbca59543fab0cdc7076c", "f074e15e7a09cb1bc9945126ba0738c0", "b209128e3c328a5549cb0041d7b60c18"], "price": 680000000, "status": "disponible", "title": "Casa en San Lorenzo", "id": "qhr0xb3h02g8l2i9o44e"}, {"address": "Barrio Posta Ybycuá, a 1 cuadra de la Av. José Asunción Flores", "createdAt": 1790363498700, "currency": "Gs", "lat": -25.4105609, "lng": -57.4715461, "mapsUrl": "https://maps.app.goo.gl/Vj3EE8kr3JgtcS8D6?g_st=awb", "notes": "Terreno 13,50x27m (365m² totales), 80m² construidos (10x8). 2 dormitorios (1 con detalles a terminar), cocina comedor, patio amplio, cochera para varios vehículos.", "photoIds": ["d68d73ef3f8e93f6ae988bf9555654ea", "70bcdaff7af084030a4b6a530d727397", "e8e87a712e822fb2fcc66e34c3c7aed5", "5289bcbdf489b1d852cf0f197afd4ee3", "039cfe40cecac9a04d85b86c27bfe7b2", "3d7a6ab3a2f9b806af57759241d98c15", "6d76d75a1f83be40721a15780bf4278a", "3fca30bd5200a41409f88d0600c13b91", "5e7aee7bb64f9d47dad0f854b859d143", "cce8dfd31226875d3aba2f56cbb70f02"], "price": 290000000, "status": "disponible", "title": "Casa en Capiatá", "id": "398032cnrbvnxu8lrf94"}, {"address": "Fernando de la Mora, Zona Sur, a pasos de la Avda. 11 de Septiembre", "createdAt": 1790363339339, "currency": "Gs", "lat": -25.3386206, "lng": -57.553559, "mapsUrl": "https://maps.app.goo.gl/Hg2ngxdfTtDFyUTb9?g_st=awb", "notes": "Superficie 360m². Hall de acceso, amplio living/comedor, cocina, 3 dormitorios, 2 baños, galería/quincho, área de servicio.", "photoIds": ["39700c501df2ecdec3dcd3b0bbccc914", "b06889ab033fc1c39fb2b5e1792111ec", "0ea760067ec6f75cdd3f5594c8e3e1f0", "cff5c894f2aa4ee320a52b70b1bc1302", "ebdfe6f4bd41f0f6fdb5cc7603fd9e1f", "a6b8e67d1bfbcc94b7b5bd72c5b04c9e", "4b9ed0ae2e0b0df62b29b43eea036e69", "06e3d8b111ce4423476762dc8190e115", "3ab7da7ea94dfcfc56926473781a9150", "9434233081ac23d20cfce8bee4d9225d"], "price": 750000000, "status": "disponible", "title": "Amplia Casa en Fernando de la Mora – Zona Sur", "id": "kcj7sj01dcgbpclhos5l"}, {"address": "Avelino Martínez, San Lorenzo", "createdAt": 1790363159574, "currency": "Gs", "lat": -25.3645553, "lng": -57.552341, "mapsUrl": "https://maps.app.goo.gl/e373KXfNwofRwKDR9?g_st=awb", "notes": "Terreno amurallado, 12x30m, superficie total 360m². Título listo para transferir.", "photoIds": ["8354f3580e57a3c8243c1ece0917f139", "52084e8c45e68f5c419e966ee5dfbdd4", "a903b565ad24687240511dd7d1e3c6d4", "167d6d5225c4163791a00db8e230a125"], "price": 280000000, "status": "disponible", "title": "Terreno Amurallado en San Lorenzo", "id": "gqdzshh7gxds2y2y98u9"}, {"address": "Barrio Cristóbal Colón, San Bernardino", "createdAt": 1790362753821, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "2 terrenos juntos, superficie aprox. 840m² (28x29m aprox.), a 200m de Avda. Guillermo Naumann, zona residencial. Ideal para vivienda permanente, casa de verano o desarrollo inmobiliario.", "photoIds": ["5f3b8c1743705f953c36487ac8a2c575", "97ff9c16770b59446120a51ce72f53cf", "e1776abe94f2df674bad725a606f342f", "9dfd21f498586ae405353b6862c96780", "63f6de8a8ee38be29779abf9d2782248", "4ca4ec69ca2092ffc3bc9724790ad1c8", "043fb103af1c5832db92e0e54efad3ed", "8f46cae3e958730820032b9947d45d79"], "price": 110000, "status": "disponible", "title": "2 Terrenos en San Bernardino - Barrio Cristóbal Colón", "id": "ofg5v7cjtjl2kmutkc9a"}, {"address": "San Bernardino", "createdAt": 1790362136288, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "Terreno 26x28m (728m² totales), 595m² construidos. Planta alta: 3 dormitorios en suite, amplio estar íntimo, A/A 24.000 BTU. Planta baja: living comedor amplio, cocina equipada con desayunador americano, 1 dormitorio en suite, lavadero/sauna/baño de servicio, living-comedor y baño social. Piscina 65m² (1,80m profundidad) con hidromasaje. Estacionamiento techado para varios vehículos, salón climatizado para eventos, sanitarios, kitchenette, generador propio, tanque de agua 2.000L, circuito cerrado.", "photoIds": ["48819308920cd4d1c6cb8678f6be0c21", "48235af5666d6acf9c13da42d5705822", "1ebe0baf49cdd4f927f3c00850fca2f1", "07d87e9e23ffc96aff9e55417dce149d", "627274dd3bb77f4a83507b5d134d8241", "3c1737320ff2c503875bcdeb6a438750", "b51907ce01d0d2bd95a6c356e9ecd0c2", "33711f90c9fa841685e367ab4dee6c6b", "5b9cc547e197ddedbb945fa1126b95fa", "f1f08a97808a6ef80044e1a508fc4eb3"], "price": 450000, "status": "disponible", "title": "Residencia Premium en San Bernardino", "id": "8m76omiqknrqku0sb4j7"}, {"address": "San Bernardino", "createdAt": 1790355854515, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "Terreno 364m², construidos 188m². 2 habitaciones amplias en suite, salón multifuncional en planta alta con baño privado, depósito, estacionamiento, piscina con iluminación. Construcción moderna (1 año).", "photoIds": ["7f21a636f7c27c127f32e1720b5e4722", "010cff554180f0a123d9c307885e6c1a", "8b3566c530d49c53f68407876a3f77b1", "d61af97887bc5bbcfb11ff3b3c7b1f36"], "price": 290000, "status": "disponible", "title": "Moderna Residencia San Bernardino", "id": "iwpdycvbrzbposxgqwsc"}, {"address": "Dr. Francisco Morra 375, Asunción – a pasos de la calle Andrade", "createdAt": 1790355497568, "mapsUrl": "https://maps.app.goo.gl/6ZPtqrTNTgkn1RDe6", "notes": "Terreno 600m², construida 500m², 5 dormitorios (4 en suite), 5 baños, 3 estacionamientos. PB: sala y comedor social, baño social, habitación de huéspedes, estar/TV, comedor diario, cocina equipada, quincho con parrilla. PA: 4 habitaciones en suite, hall central con buena iluminación.", "photoIds": ["acb560b3cf7c54cc21c5d326088dc43d", "2174f7850e8e1e23978199e952097d36", "464fa885de27b42f9a7bf2b0797597bb", "991f6332608578a19f3876f748158059"], "price": 800000, "status": "disponible", "title": "Exclusiva Residencia en el Barrio Villa Morra", "id": "u0q1eivrfubobnwxi8x9"}];</script>
+<script>
+
+const $ = id => document.getElementById(id);
+let db=null, assetsApi=null, downloadsApi=null, canWrite=false, clientView=false;
+let properties=[], currentView='grid', typeFilter='';
+let editingId=null, editingPhotoIds=[], currentDetail=null, detailIdx=0;
+
+// Número de WhatsApp de contacto (formato internacional, sin + ni espacios). Vacío = sin botón.
+const WHATSAPP_NUMBER = "595981869933";
+
+const ZONES = [
+  {name:'Villa Morra', city:'Asunción', re:/villa morra/i},
+  {name:'Las Mercedes', city:'Asunción', re:/las mercedes|mercedia/i},
+  {name:'Asunción', city:'Asunción', re:/asunci[oó]n|zona centro/i},
+  {name:'Fernando de la Mora', city:'Fernando de la Mora', re:/fernando de la mora|fdo\.? ?sur|zavala/i},
+  {name:'San Lorenzo', city:'San Lorenzo', re:/san lorenzo/i},
+  {name:'Luque', city:'Luque', re:/luque/i},
+  {name:'Ñemby', city:'Ñemby', re:/ñemby/i},
+  {name:'Capiatá', city:'Capiatá', re:/capiat[aá]/i},
+  {name:'Itauguá', city:'Itauguá', re:/itaugu[aá]/i},
+  {name:'Itá', city:'Itá', re:/\bit[aá](?![\wáéíóúñ])/i},
+  {name:'Villeta', city:'Villeta', re:/villeta/i},
+  {name:'Villa Elisa', city:'Villa Elisa', re:/villa elisa/i},
+  {name:'San Bernardino', city:'San Bernardino', re:/san bernardino|puerta del lago/i},
+  {name:'Surubi’i', city:'Mariano R. Alonso', re:/surubi/i},
+  {name:'Barrio San Pablo', city:'Asunción', re:/san pablo/i}
+];
+const MAP_REFS = [
+  {name:'Asunción', lat:-25.2637, lng:-57.5759}, {name:'Luque', lat:-25.2699, lng:-57.4854},
+  {name:'San Lorenzo', lat:-25.3400, lng:-57.5200}, {name:'Ñemby', lat:-25.3899, lng:-57.5350},
+  {name:'Fdo. de la Mora', lat:-25.3200, lng:-57.5600}, {name:'Capiatá', lat:-25.3547, lng:-57.4453},
+  {name:'Itauguá', lat:-25.3958, lng:-57.3556}, {name:'Itá', lat:-25.5064, lng:-57.3611},
+  {name:'Villeta', lat:-25.5093, lng:-57.5666}, {name:'Villa Elisa', lat:-25.3676, lng:-57.5927},
+  {name:'M. R. Alonso', lat:-25.1927, lng:-57.5322}, {name:'San Bernardino', lat:-25.3208, lng:-57.2939}
+];
+
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function cur(p){ return p.currency==='Gs' ? 'Gs' : 'USD'; }
+function money(p){
+  if(p.price===null || p.price===undefined || p.price==='' || isNaN(Number(p.price))) return '';
+  const f = Number(p.price).toLocaleString('es-PY');
+  return cur(p)==='Gs' ? 'Gs. '+f : 'USD '+f;
+}
+function zoneOf(p){
+  const z = ZONES.find(z=>z.re.test(p.title||'')) || ZONES.find(z=>z.re.test(p.address||''));
+  return z ? z.name : '';
+}
+function typeOf(p){
+  if(p.type) return p.type;
+  const t = (p.title||'').toLowerCase();
+  if(/terreno/.test(t)) return 'Terreno';
+  if(/departamento|monoambiente/.test(t)) return 'Departamento';
+  if(/dep[oó]sito|tinglado|local|sal[oó]n comercial/.test(t)) return 'Comercial';
+  const n = (p.notes||'').toLowerCase();
+  if(!/dormitorio|habitaci|dependencia|suite/.test(n) && /superficie total/.test(n)) return 'Terreno';
+  return 'Casa';
+}
+const TYPE_PLURAL = {Casa:'Casas', Departamento:'Departamentos', Terreno:'Terrenos', Comercial:'Comercial'};
+function facts(p){
+  const text = (p.notes||'');
+  const out = {};
+  let m = text.match(/terreno[^.]*?\(?\s*(\d[\d.,]*)\s?m²/i) || text.match(/superficie(?: total)?:?\s*(?:aprox\.?\s*)?(\d[\d.,]*)\s?m²/i) || text.match(/(\d[\d.,]*)\s?m²\s*(?:totales|de superficie|superficie)/i) || text.match(/(\d[\d.,]*)\s?m²/i);
+  if(m) out.m2 = m[1].replace(/,\d+$/,'')+' m²';
+  const b = text.match(/construid[oa]s?\s*(?:aprox\.?\s*)?(\d[\d.,]*)\s?m²/i) || text.match(/(\d[\d.,]*)\s?m²\s*construid/i) || text.match(/construcci[oó]n:?\s*aprox\.?\s*(\d[\d.,]*)\s?m²/i);
+  if(b) out.built = b[1]+' m²';
+  const tr = (p.title||'').match(/(\d+)\s*(dormitorios?|habitaciones?)/i);
+  const sum = re => [...text.matchAll(re)].reduce((s,m)=>s+Number(m[1]),0);
+  const rooms = tr ? Number(tr[1]) : Math.max(sum(/(\d+)\s*dormitorios?/gi), sum(/(\d+)\s*habitaciones?/gi));
+  if(rooms) out.rooms = String(rooms);
+  const ba = text.match(/(\d+)\s*baños?\b(?!\s*con)/i);
+  if(ba) out.baths = ba[1];
+  return out;
+}
+function factsLine(p){
+  const f = facts(p), parts=[];
+  if(f.m2) parts.push(f.m2);
+  if(f.rooms) parts.push(f.rooms+' dorm.');
+  if(f.baths) parts.push(f.baths+(f.baths==='1'?' baño':' baños'));
+  return parts.join(' · ');
+}
+const isEditor = () => canWrite && !clientView;
+
+function init(){ properties = window.PROPERTIES; renderZones(); renderCounts(); renderChips(); render(); }
+
+function renderCounts(){
+  const by = {};
+  properties.forEach(p=>{ const t=typeOf(p); by[t]=(by[t]||0)+1; });
+  const zones = new Set(properties.map(zoneOf).filter(Boolean));
+  const cells = [['Propiedades', properties.length], ['Casas', by.Casa||0], ['Terrenos', by.Terreno||0], ['Zonas', zones.size]];
+  $('counts').innerHTML = cells.map(([l,n])=>`<div class="count"><b>${n}</b><span>${l}</span></div>`).join('');
+}
+function renderChips(){
+  const by = {}; properties.forEach(p=>{ const t=typeOf(p); by[t]=(by[t]||0)+1; });
+  const opts = [['', 'Todas', properties.length]].concat(['Casa','Departamento','Terreno','Comercial'].filter(t=>by[t]).map(t=>[t, TYPE_PLURAL[t], by[t]]));
+  $('typeChips').innerHTML = opts.map(([v,l,n])=>`<button class="chip" data-type="${v}" aria-pressed="${typeFilter===v}">${l}${properties.length?`<small>${n}</small>`:''}</button>`).join('');
+  $('typeChips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{ typeFilter=b.dataset.type; renderChips(); render(); });
+}
+function renderZones(){
+  const sel = $('filterZone'), keep = sel.value;
+  const zones = [...new Set(properties.map(zoneOf).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
+  sel.innerHTML = '<option value="">Todas las zonas</option>' + zones.map(z=>`<option value="${esc(z)}">${esc(z)}</option>`).join('');
+  sel.value = zones.includes(keep) ? keep : '';
+}
+
+function getFiltered(){
+  const q = ($('searchInput').value||'').trim().toLowerCase();
+  const z = $('filterZone').value, c = $('filterCurrency').value, s = $('sortSelect').value;
+  let list = properties.filter(p=>{
+    if(typeFilter && typeOf(p)!==typeFilter) return false;
+    if(z && zoneOf(p)!==z) return false;
+    if(c && cur(p)!==c) return false;
+    if(q){ const hay=((p.title||'')+' '+(p.address||'')+' '+(p.notes||'')+' '+zoneOf(p)).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  });
+  const val = p => (p.price==null||isNaN(Number(p.price))) ? null : Number(p.price) * (cur(p)==='Gs' ? 1/7800 : 1);
+  if(s==='precio_asc') list.sort((a,b)=>(val(a)??Infinity)-(val(b)??Infinity));
+  else if(s==='precio_desc') list.sort((a,b)=>(val(b)??-Infinity)-(val(a)??-Infinity));
+  else if(s==='destacadas') list.sort((a,b)=>{
+    const pa=(a.photoIds||[]).length>0, pb=(b.photoIds||[]).length>0;
+    if(pa!==pb) return pa?-1:1;
+    const st = x => x.status==='vendida'?2:x.status==='reservada'?1:0;
+    if(st(a)!==st(b)) return st(a)-st(b);
+    return (b.createdAt||0)-(a.createdAt||0);
+  });
+  return list;
+}
+
+function render(){
+  const list = getFiltered();
+  $('resultCount').textContent = properties.length ? (list.length===1 ? '1 propiedad' : list.length+' propiedades') : '';
+  const grid = currentView==='grid';
+  $('grid').hidden = !grid; $('mapWrap').hidden = grid;
+  $('viewGridBtn').setAttribute('aria-pressed', String(grid));
+  $('viewMapBtn').setAttribute('aria-pressed', String(!grid));
+  if(grid) renderGrid(list); else renderMap(list);
+}
+
+const HOUSE_SVG = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.2 10.3V20h13.6v-9.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function renderGrid(list){
+  const g = $('grid');
+  if(!properties.length){ g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h2>Todavía no hay propiedades</h2><p>'+'Pronto vas a encontrar acá nuestras propiedades.'+'</p></div>'; return; }
+  if(!list.length){ g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h2>Sin resultados</h2><p>Ninguna propiedad coincide con esos filtros. Probá con otra zona o tipo.</p></div>'; return; }
+  g.innerHTML='';
+  list.forEach(p=>{
+    const photos = p.photoIds||[];
+    const b = document.createElement('button');
+    b.className='card'; b.type='button';
+    const st = p.status && p.status!=='disponible' ? `<span class="tag ${p.status}">${p.status==='reservada'?'Reservada':'Vendida'}</span>` : '<span></span>';
+    const price = money(p);
+    b.innerHTML = `<div class="card-media">${photos[0]?`<img loading="lazy" src="fotos/${photos[0]}.jpg" alt="">`:`<div class="no-photo">${HOUSE_SVG}<span>Fotos en preparación</span></div>`}
+      <div class="card-tags"><span class="tag">${typeOf(p)}</span>${st}</div>
+      ${photos.length>1?`<span class="photo-count">${photos.length} fotos</span>`:''}</div>
+      <div class="card-body"><span class="card-zone">${esc(zoneOf(p)||'Paraguay')}</span>
+      <h3 class="card-title">${esc(p.title||'Sin título')}</h3>
+      <div class="card-foot"><span class="facts">${esc(factsLine(p))}</span><span class="price ${price?'':'ask'}">${price||'Consultar'}</span></div></div>`;
+    b.onclick = ()=>openDetail(p);
+    g.appendChild(b);
+  });
+}
+
+function renderMap(list){
+  const v = $('mapView'); v.innerHTML='';
+  const pts = list.filter(p=>typeof p.lat==='number' && typeof p.lng==='number' && !isNaN(p.lat) && !isNaN(p.lng));
+  const missing = list.length - pts.length;
+  $('mapNote').textContent = 'Mapa de referencia por zonas. Tocá un punto para ver la propiedad.' + (missing>0 ? ` ${missing} ${missing===1?'propiedad no tiene':'propiedades no tienen'} coordenadas y no ${missing===1?'aparece':'aparecen'} en el mapa.` : '');
+  const all = pts.map(p=>({lat:p.lat,lng:p.lng})).concat(MAP_REFS);
+  let minLat=Math.min(...all.map(p=>p.lat)), maxLat=Math.max(...all.map(p=>p.lat)), minLng=Math.min(...all.map(p=>p.lng)), maxLng=Math.max(...all.map(p=>p.lng));
+  const pl=(maxLat-minLat)*.12||.05, pg=(maxLng-minLng)*.12||.05; minLat-=pl; maxLat+=pl; minLng-=pg; maxLng+=pg;
+  const xy=(lat,lng)=>[((lng-minLng)/(maxLng-minLng))*100, (1-(lat-minLat)/(maxLat-minLat))*100];
+  MAP_REFS.forEach(r=>{ const [x,y]=xy(r.lat,r.lng); v.insertAdjacentHTML('beforeend', `<div class="map-ref" style="left:${x}%;top:${y}%"></div><div class="map-ref-label" style="left:${x}%;top:${y}%">${esc(r.name)}</div>`); });
+  pts.forEach(p=>{
+    const [x,y]=xy(p.lat,p.lng);
+    const pin=document.createElement('button'); pin.type='button';
+    pin.className='map-pin '+(p.status||''); pin.style.left=x+'%'; pin.style.top=y+'%';
+    pin.setAttribute('aria-label', p.title||'Propiedad');
+    const ph = (p.photoIds||[])[0];
+    pin.innerHTML = `<div class="dot"></div><div class="tip">${ph?`<img src="fotos/${ph}.jpg" alt="">`:''}<b>${esc(p.title||'')}</b><br><span style="color:var(--muted)">${esc(money(p)||'Consultar precio')}</span></div>`;
+    pin.onclick=()=>openDetail(p);
+    v.appendChild(pin);
+  });
+}
+
+/* Detail */
+function openDetail(p){ currentDetail=p; detailIdx=0; fillDetail(); $('detailOverlay').hidden=false; document.body.style.overflow='hidden'; }
+function closeDetail(){ $('detailOverlay').hidden=true; document.body.style.overflow=''; }
+function fillDetail(){
+  const p = currentDetail, photos = p.photoIds||[];
+  if(detailIdx>=photos.length) detailIdx=0;
+  $('d_zone').textContent = [typeOf(p), zoneOf(p)].filter(Boolean).join(' · ');
+  $('d_title').textContent = p.title||'Sin título';
+  $('d_price').textContent = money(p) || 'Precio a consultar';
+  const f = facts(p);
+  const cells = [[f.m2,'Superficie'],[f.built,'Construido'],[f.rooms,'Dormitorios'],[f.baths,'Baños']].filter(c=>c[0]);
+  $('d_facts').innerHTML = cells.map(([v,l])=>`<div class="d-fact"><b>${esc(v)}</b><span>${l}</span></div>`).join('');
+  $('d_facts').hidden = !cells.length;
+  $('d_notes').textContent = p.notes||'';
+  $('d_addr').textContent = p.address||'';
+  $('d_maps').hidden = !p.mapsUrl; if(p.mapsUrl) $('d_maps').href = p.mapsUrl;
+  if(WHATSAPP_NUMBER){
+    const msg = encodeURIComponent('Hola! Vi en el catálogo de 3M Consultora la propiedad "'+(p.title||'')+'" y me gustaría más información.');
+    $('waBtn').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+msg; $('waBtn').hidden=false;
+  } else $('waBtn').hidden=true;
+  renderDetailMedia();
+}
+function renderDetailMedia(){
+  const photos = currentDetail.photoIds||[];
+  const hero = $('dHero');
+  if(!photos.length){ hero.innerHTML = `<div class="no-photo">${HOUSE_SVG}<span>Fotos en preparación</span></div>`; hero.style.cursor='default'; $('dThumbs').hidden=true; return; }
+  hero.style.cursor='zoom-in';
+  hero.innerHTML = `<img src="fotos/${photos[detailIdx]}.jpg" alt="Foto ${detailIdx+1} de ${photos.length}">` + (photos.length>1?'<button class="d-nav d-prev" aria-label="Foto anterior">‹</button><button class="d-nav d-next" aria-label="Foto siguiente">›</button>':'');
+  hero.querySelector('img').onclick = ()=>openLightbox(photos.map(id=>'fotos/'+id+'.jpg'), detailIdx);
+  const pr = hero.querySelector('.d-prev'), nx = hero.querySelector('.d-next');
+  if(pr){ pr.onclick=e=>{e.stopPropagation(); detailIdx=(detailIdx-1+photos.length)%photos.length; renderDetailMedia();}; nx.onclick=e=>{e.stopPropagation(); detailIdx=(detailIdx+1)%photos.length; renderDetailMedia();}; }
+  const th = $('dThumbs'); th.hidden = photos.length<2;
+  th.innerHTML = photos.map((id,i)=>`<button data-i="${i}" aria-current="${i===detailIdx}" aria-label="Foto ${i+1}"><img loading="lazy" src="fotos/${id}.jpg" alt=""></button>`).join('');
+  th.querySelectorAll('button').forEach(b=>b.onclick=()=>{ detailIdx=Number(b.dataset.i); renderDetailMedia(); });
+}
+
+/* Lightbox */
+let lbUrls=[], lbIdx=0;
+function openLightbox(urls, i){ lbUrls=urls; lbIdx=i; renderLb(); $('lightbox').hidden=false; }
+function renderLb(){ $('lbImg').src=lbUrls[lbIdx]; const m=lbUrls.length>1; $('lbPrev').hidden=!m; $('lbNext').hidden=!m; $('lbCount').textContent = m ? (lbIdx+1)+' / '+lbUrls.length : ''; }
+$('lbClose').onclick=()=>$('lightbox').hidden=true;
+$('lbPrev').onclick=()=>{ lbIdx=(lbIdx-1+lbUrls.length)%lbUrls.length; renderLb(); };
+$('lbNext').onclick=()=>{ lbIdx=(lbIdx+1)%lbUrls.length; renderLb(); };
+$('lightbox').addEventListener('click', e=>{ if(e.target.id==='lightbox') $('lightbox').hidden=true; });
+
+document.addEventListener('keydown', e=>{
+  if(!$('lightbox').hidden){ if(e.key==='Escape') $('lightbox').hidden=true; if(e.key==='ArrowLeft') $('lbPrev').click(); if(e.key==='ArrowRight') $('lbNext').click(); return; }
+  if(e.key==='Escape'){ if(!$('detailOverlay').hidden) closeDetail();  }
+});
+['detailOverlay'].forEach(id=>$(id).addEventListener('click', e=>{ if(e.target.id===id){ if(id==='detailOverlay') closeDetail(); else $(id).hidden=true; } }));
+
+/* Wiring */
+$('closeDetailBtn').onclick=closeDetail;
+$('searchInput').oninput=render; $('filterZone').onchange=render; $('filterCurrency').onchange=render; $('sortSelect').onchange=render;
+$('viewGridBtn').onclick=()=>{ currentView='grid'; render(); };
+$('viewMapBtn').onclick=()=>{ currentView='map'; render(); };
+
+init();
+
+</script>
+</body>
+</html>
