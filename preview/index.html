@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="es">
+<head>
+<base href="../">
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Innovation Trading · Propiedades, tasaciones y proyectos</title>
+<meta name="description" content="Propiedades en venta, tasaciones, proyectos, anteproyectos y asesoría jurídica inmobiliaria en Paraguay. Innovation Trading S.A. en alianza con 3M Consultora.">
+<meta property="og:title" content="Innovation Trading · Propiedades, tasaciones y proyectos">
+<meta property="og:description" content="Casas, terrenos y campos en venta, tasaciones, proyectos, anteproyectos y asesoría jurídica inmobiliaria.">
+<meta property="og:image" content="https://catalogopropiedades.github.io/catalogo/logo.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2d5b8a">
+<link rel="icon" href="favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Manrope:wght@400;500;600&family=Cormorant+Garamond:wght@700&display=swap">
+<style>
+/* Layout: slim sticky bar, a short intro with live counts, type chips + filters, then a photo-first grid; detail opens as a large sheet. */
+/* Innovation Trading: azul institucional + verde del logo, fondo claro */
+:root{
+  --bg:#f5f7fa; --surface:#ffffff; --ink:#1b2a3d; --muted:#5d6b7c; --line:#dde3ea;
+  --gold:#2d5b8a; --gold-soft:rgba(45,91,138,.10); --green:#a9ba43; --scrim:rgba(14,26,42,.6);
+  --ok:#5f8a2e; --warn:#9a6b1f; --bad:#a3453b;
+  --font-display:"Outfit","Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-body:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --radius:6px; color-scheme:light;
+}
+*{box-sizing:border-box}
+html{height:100%}
+body{margin:0; min-height:100%; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit; color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
+.wrap{max-width:1180px; margin:0 auto; padding-inline:clamp(16px,4vw,40px)}
+[hidden]{display:none!important}
+
+/* Bar */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:60px}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+.brand-mark{display:flex; flex-direction:column; line-height:1}
+.brand-3m{font-family:var(--font-display); font-size:22px; color:var(--gold); letter-spacing:.04em}
+.brand-sub{font-size:10px; letter-spacing:.28em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+.bar-actions{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+.btn{border:1px solid var(--line); background:transparent; border-radius:var(--radius); padding:8px 14px; font-size:13px; font-weight:500; display:inline-flex; align-items:center; gap:6px; text-decoration:none; color:var(--ink); white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn-solid{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.btn-solid:hover{opacity:.88}
+.btn-gold{border-color:var(--gold); color:var(--gold)}
+.btn-danger{border-color:var(--bad); color:var(--bad)}
+.btn[aria-pressed="true"]{background:var(--gold-soft); border-color:var(--gold); color:var(--gold)}
+
+/* Intro */
+.intro{padding-block:clamp(28px,5vw,56px) 20px; display:grid; gap:18px; grid-template-columns:1fr; align-items:end}
+@media (min-width:860px){.intro{grid-template-columns:1.3fr 1fr}}
+.eyebrow{font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); margin:0 0 10px}
+.intro h1{font-family:var(--font-display); font-weight:400; font-size:clamp(32px,5vw,54px); line-height:1.05; margin:0; text-wrap:balance; letter-spacing:.005em}
+.intro p.lede{color:var(--muted); margin:14px 0 0; max-width:52ch}
+.counts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line)}
+.count{flex:1 1 90px; padding:12px 14px 4px 0}
+.count b{display:block; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1; font-variant-numeric:tabular-nums}
+.count span{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+
+/* Filters */
+.filters{display:flex; flex-direction:column; gap:12px; padding-block:14px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:22px}
+.chips{display:flex; gap:6px; flex-wrap:wrap}
+.chip{border:1px solid var(--line); background:transparent; border-radius:999px; padding:6px 14px; font-size:13px; color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.chip small{opacity:.7; margin-left:4px; font-variant-numeric:tabular-nums}
+.filter-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.filter-row input[type=search]{flex:1 1 220px; min-width:0; padding:9px 12px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
+.filter-row select{padding:9px 10px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); max-width:100%}
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-left:auto}
+.seg button{border:0; background:transparent; padding:8px 14px; font-size:13px; color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.result-count{font-size:12px; color:var(--muted); letter-spacing:.06em; margin:-8px 0 16px}
+
+/* Grid */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:28px 22px; padding-bottom:64px}
+.card{display:flex; flex-direction:column; background:none; border:0; padding:0; text-align:left; color:inherit; cursor:pointer}
+.card-media{position:relative; aspect-ratio:4/3; max-width:100%; overflow:hidden; border-radius:var(--radius); background:var(--line)}
+.card-media img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease}
+.card:hover .card-media img{transform:scale(1.035)}
+.card-tags{position:absolute; top:10px; left:10px; right:10px; display:flex; justify-content:space-between; gap:6px; pointer-events:none}
+.tag{font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; padding:4px 8px; border-radius:2px; background:rgba(16,17,16,.62); color:#f1efe9; backdrop-filter:blur(4px)}
+.tag.reservada{background:rgba(154,107,31,.88)} .tag.vendida{background:rgba(163,69,59,.9)}
+.photo-count{position:absolute; right:10px; bottom:10px; font-size:11px; padding:3px 7px; border-radius:2px; background:rgba(16,17,16,.6); color:#f1efe9; font-variant-numeric:tabular-nums}
+.no-photo{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--muted); font-size:12px; letter-spacing:.08em;
+  background:repeating-linear-gradient(135deg, transparent 0 11px, color-mix(in srgb, var(--muted) 10%, transparent) 11px 12px), var(--surface)}
+.card-body{padding-top:12px; display:grid; gap:4px}
+.card-zone{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold)}
+.card-title{font-family:var(--font-display); font-size:20px; line-height:1.2; margin:0; text-wrap:balance}
+.card-foot{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-top:4px; padding-top:8px; border-top:1px solid var(--line)}
+.facts{font-size:13px; color:var(--muted); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.price{font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap}
+.price.ask{font-weight:500; color:var(--muted)}
+.empty-state{padding:60px 0; text-align:center; color:var(--muted)}
+.empty-state h2{font-family:var(--font-display); font-weight:400; color:var(--ink); margin:0 0 6px}
+
+/* Map */
+.map{position:relative; width:100%; max-width:100%; aspect-ratio:4/3; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+  background:linear-gradient(var(--line) 1px, transparent 1px) 0 0/48px 48px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/48px 48px, var(--surface); margin-bottom:10px}
+@media (min-width:860px){.map{aspect-ratio:16/9}}
+.map-ref{position:absolute; width:5px; height:5px; border-radius:50%; background:var(--muted); opacity:.6; transform:translate(-50%,-50%)}
+.map-ref-label{position:absolute; font-size:11px; color:var(--muted); transform:translate(7px,-50%); white-space:nowrap; pointer-events:none}
+.map-pin{position:absolute; transform:translate(-50%,-100%); cursor:pointer; z-index:2; border:0; background:none; padding:0}
+.map-pin .dot{width:16px; height:16px; border-radius:50% 50% 50% 0; background:var(--gold); border:2px solid var(--surface); transform:rotate(-45deg); box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.map-pin.reservada .dot{background:var(--warn)} .map-pin.vendida .dot{background:var(--bad)}
+.map-pin .tip{position:absolute; bottom:22px; left:50%; transform:translateX(-50%); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:var(--radius); padding:6px; font-size:12px; width:170px; text-align:left; box-shadow:0 6px 20px rgba(0,0,0,.18); display:none}
+.map-pin .tip img{width:100%; height:80px; object-fit:cover; border-radius:2px; display:block; margin-bottom:5px}
+.map-pin:hover .tip,.map-pin:focus .tip{display:block}
+.map-note{font-size:12px; color:var(--muted); margin:0 0 64px}
+
+/* Overlays */
+.overlay{position:fixed; inset:0; z-index:30; background:var(--scrim); display:flex; align-items:flex-end; justify-content:center}
+@media (min-width:720px){.overlay{align-items:center; padding:24px}}
+.sheet{background:var(--surface); color:var(--ink); width:100%; max-width:560px; max-height:94vh; overflow-y:auto; border-radius:10px 10px 0 0; padding:20px; padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+@media (min-width:720px){.sheet{border-radius:6px}}
+.sheet.wide{max-width:980px; padding:0}
+.sheet h2{font-family:var(--font-display); font-weight:400; font-size:26px; margin:0 0 6px}
+.sheet-actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; margin-top:18px}
+label{display:block; font-size:12px; letter-spacing:.06em; color:var(--muted); margin:14px 0 5px}
+.sheet input[type=text],.sheet input[type=number],.sheet input[type=url],.sheet select,.sheet textarea{width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:var(--radius); background:var(--bg)}
+.sheet textarea{min-height:80px; resize:vertical}
+.row2{display:flex; gap:8px} .row2>*{flex:1; min-width:0}
+.hint{font-size:12px; color:var(--muted); margin:6px 0 0}
+.err{color:var(--bad); font-size:13px; margin-top:10px}
+.upload-box{border:1px dashed var(--line); border-radius:var(--radius); padding:14px; text-align:center; color:var(--muted); font-size:13px; margin-top:6px; background:transparent; width:100%}
+.photo-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.photo-thumb{position:relative; width:76px; height:76px; border-radius:3px; overflow:hidden}
+.photo-thumb.cover{outline:2px solid var(--gold); outline-offset:2px}
+.photo-thumb img{width:100%; height:100%; object-fit:cover}
+.photo-thumb button{position:absolute; top:3px; width:22px; height:22px; border-radius:50%; border:0; padding:0; line-height:22px; font-size:12px; background:rgba(0,0,0,.6); color:#fff}
+.photo-thumb .coverBtn{left:3px} .photo-thumb .removeBtn{right:3px}
+.photo-thumb .coverBtn.active{background:var(--gold)}
+.confirm-box{margin-top:14px; padding:12px; border:1px solid var(--bad); border-radius:var(--radius); font-size:14px}
+
+/* Detail */
+.detail{display:grid; grid-template-columns:1fr}
+@media (min-width:860px){.detail{grid-template-columns:1.35fr 1fr}}
+.d-media{background:#111; position:relative; min-width:0}
+.d-hero{position:relative; aspect-ratio:4/3; max-width:100%; overflow:hidden; cursor:zoom-in}
+.d-hero img{width:100%; height:100%; object-fit:cover; display:block}
+.d-hero .no-photo{background:var(--surface)}
+.d-nav{position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; border:0; background:rgba(0,0,0,.5); color:#fff; font-size:20px; line-height:1}
+.d-prev{left:10px} .d-next{right:10px}
+.d-thumbs{display:flex; gap:4px; overflow-x:auto; padding:4px; background:#111}
+.d-thumbs button{flex:0 0 auto; border:0; padding:0; width:64px; height:48px; opacity:.55; background:none}
+.d-thumbs button[aria-current="true"]{opacity:1; outline:1px solid var(--gold)}
+.d-thumbs img{width:100%; height:100%; object-fit:cover; display:block}
+.d-info{padding:24px; min-width:0; display:flex; flex-direction:column}
+.d-close{position:absolute; top:10px; right:10px; z-index:3; width:34px; height:34px; border-radius:50%; border:0; background:rgba(0,0,0,.55); color:#fff; font-size:16px}
+.d-price{font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; margin:4px 0 14px}
+.d-facts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:16px}
+.d-fact{flex:1 1 90px; padding:10px 10px 10px 0}
+.d-fact b{display:block; font-size:16px; font-weight:600; font-variant-numeric:tabular-nums}
+.d-fact span{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.d-notes{white-space:pre-wrap; color:var(--ink); opacity:.86; margin:0 0 14px; max-width:65ch}
+.d-addr{color:var(--muted); font-size:14px; margin:0 0 4px}
+.d-link{color:var(--gold); font-size:14px; text-decoration:none}
+.d-link:hover{text-decoration:underline}
+.internal{margin:14px 0 0; padding:10px 12px; border-left:2px solid var(--warn); background:color-mix(in srgb, var(--warn) 9%, transparent); font-size:13px}
+.internal b{display:block; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--warn); margin-bottom:2px}
+.d-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; padding-top:20px}
+
+/* Lightbox */
+#lightbox{position:fixed; inset:0; z-index:50; background:rgba(8,8,8,.94); display:flex; align-items:center; justify-content:center}
+#lightbox img{max-width:94vw; max-height:88vh; object-fit:contain}
+#lightbox .lb-btn{position:absolute; border:0; background:rgba(255,255,255,.12); color:#fff; width:42px; height:42px; border-radius:50%; font-size:20px}
+#lbPrev{left:14px; top:50%; transform:translateY(-50%)} #lbNext{right:14px; top:50%; transform:translateY(-50%)} #lbClose{top:14px; right:14px; font-size:16px}
+#lbCount{position:absolute; bottom:16px; left:0; right:0; text-align:center; color:#ccc; font-size:12px; font-variant-numeric:tabular-nums}
+
+/* Flyer (image export; fixed look independent of theme) */
+#flyerCanvas{position:relative; width:100%; max-width:100%; aspect-ratio:4/5; border-radius:6px; overflow:hidden; background:#1b1b19; margin:10px 0 14px; font-family:var(--font-body)}
+#flyerCanvas .flyer-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.02) brightness(.96)}
+#flyerCanvas .flyer-top-scrim{position:absolute; left:0; right:0; top:0; height:46%; background:linear-gradient(to bottom, rgba(8,12,16,.6), rgba(8,12,16,.25) 60%, rgba(8,12,16,0))}
+#flyerCanvas .flyer-bottom-scrim{position:absolute; left:0; right:0; bottom:0; height:30%; background:linear-gradient(to top, rgba(8,12,16,.55), rgba(8,12,16,0))}
+#flyerCanvas .flyer-logo{position:absolute; top:4.5%; right:5%; display:flex; align-items:center; gap:5px}
+#flyerCanvas .flyer-logo-3m{color:#af8f4e; font-family:var(--font-display); font-size:15px; letter-spacing:.5px; line-height:1}
+#flyerCanvas .flyer-logo-sub{color:#b9b6ae; font-size:6.5px; letter-spacing:1.4px; text-transform:uppercase; line-height:1; margin-top:2px}
+#flyerCanvas .flyer-head{position:absolute; left:6%; right:28%; top:6%; color:#fff}
+#flyerCanvas .flyer-status{display:block; font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#cdb88a; margin-bottom:6px}
+#flyerCanvas .flyer-title{font-family:var(--font-display); font-size:19px; margin:0 0 4px; line-height:1.15; text-shadow:0 1px 6px rgba(0,0,0,.4)}
+#flyerCanvas .flyer-addr{font-size:9.5px; letter-spacing:1px; text-transform:uppercase; color:#e3e0d8; margin:0 0 9px}
+#flyerCanvas .flyer-price{display:inline-block; background:rgba(10,14,18,.7); border:1px solid rgba(175,143,78,.8); color:#e8dcc0; font-weight:600; font-size:13px; padding:5px 11px; border-radius:3px}
+#flyerCanvas .flyer-stats{position:absolute; left:0; right:0; bottom:5.5%; display:flex; justify-content:space-around; padding:0 5%; color:#fff}
+#flyerCanvas .flyer-stat{display:flex; flex-direction:column; align-items:center; gap:3px; max-width:32%; text-align:center}
+#flyerCanvas .flyer-stat b{font-size:11px; font-weight:600}
+#flyerCanvas .flyer-stat span{font-size:7.5px; letter-spacing:.8px; text-transform:uppercase; color:#dcd9d1}
+
+.footer{border-top:1px solid var(--line); padding-block:22px 40px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+@media (max-width:520px){.seg{margin-left:0} .bar-actions .btn{padding:7px 10px}}
+
+.brand img{display:block; width:40px; height:auto}
+.brand-name{font-family:var(--font-display); font-weight:600; font-size:19px; letter-spacing:.06em; color:#415c87; line-height:1}
+.brand-sub{font-family:var(--font-display); font-weight:600; font-size:10px; letter-spacing:.32em; color:var(--green); margin-top:4px}
+.intro h1{font-weight:600; letter-spacing:-.01em}
+.eyebrow{color:var(--green)!important; font-weight:600}
+.card-zone{color:var(--gold)}
+.card-title{font-weight:600; font-size:19px}
+.count b{font-weight:500; color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--gold); border-color:var(--gold); color:#fff}
+.seg button[aria-pressed="true"]{background:var(--gold); color:#fff}
+.btn-solid{background:var(--gold); border-color:var(--gold); color:#fff}
+.btn-gold{border-color:var(--green); color:#5f7120; background:rgba(169,186,67,.10)}
+.intro{border-bottom:3px solid transparent; border-image:linear-gradient(90deg,var(--gold) 0 70%,var(--green) 70% 100%) 1}
+.footer{align-items:center}
+.footer-logo{width:140px; height:auto}
+.footer-text{display:flex; flex-direction:column; gap:4px; text-align:right}
+@media (max-width:640px){.footer-text{text-align:left}}
+
+html{scroll-behavior:smooth} section[id]{scroll-margin-top:76px}
+.nav{display:none; gap:22px; margin-right:12px}
+.nav a{color:var(--ink); text-decoration:none; font-size:13px; font-weight:500; opacity:.8}
+.nav a:hover{opacity:1; color:var(--gold)}
+@media (min-width:760px){.nav{display:flex}}
+.btn-lg{padding:12px 20px; font-size:14px}
+.hero{padding-block:clamp(32px,7vw,88px) clamp(28px,5vw,48px); display:grid; gap:clamp(24px,4vw,48px); grid-template-columns:1fr; align-items:center}
+@media (min-width:960px){.hero{grid-template-columns:1.15fr 1fr}}
+.hero-pics{display:grid; grid-template-columns:1.25fr 1fr; grid-template-rows:1fr 1fr; gap:10px; aspect-ratio:5/4; min-width:0}
+.hero-pics img{width:100%; height:100%; object-fit:cover; border-radius:10px; display:block; min-width:0}
+.hp-a{grid-row:1 / span 2}
+.hero h1{font-family:var(--font-display); font-weight:600; font-size:clamp(32px,4.6vw,52px); line-height:1.06; letter-spacing:-.015em; margin:0; text-wrap:balance; color:var(--ink)}
+.hero .lede{color:var(--muted); font-size:clamp(15px,1.6vw,18px); line-height:1.6; margin:18px 0 0; max-width:60ch}
+.hero-cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:28px}
+.sec-head{margin-bottom:22px}
+.sec-head h2,.h-props{font-family:var(--font-display); font-weight:600; font-size:clamp(26px,3.4vw,38px); line-height:1.12; letter-spacing:-.01em; margin:0; text-wrap:balance}
+.services{padding-block:clamp(28px,5vw,56px); border-top:1px solid var(--line)}
+.svc-grid{display:grid; gap:16px; grid-template-columns:1fr}
+@media (min-width:640px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1080px){.svc-grid{grid-template-columns:repeat(4,1fr)}}
+.svc{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:22px 20px 20px; display:flex; flex-direction:column; min-width:0}
+.svc-ico{width:48px; height:48px; border-radius:10px; display:grid; place-items:center; background:var(--gold-soft); color:var(--gold); margin-bottom:16px}
+.svc h3{font-family:var(--font-display); font-weight:600; font-size:20px; margin:0 0 8px}
+.svc p{color:var(--muted); font-size:14px; line-height:1.55; margin:0 0 14px}
+.svc ul{list-style:none; margin:0 0 18px; padding:0; display:grid; gap:8px; font-size:13.5px; line-height:1.45}
+.svc li{position:relative; padding-left:18px}
+.svc li::before{content:""; position:absolute; left:0; top:.55em; width:7px; height:7px; border-radius:2px; background:var(--green)}
+.svc-cta{margin-top:auto; color:var(--gold); font-weight:600; font-size:13.5px; text-decoration:none}
+.svc-cta:hover{text-decoration:underline}
+.alliance{padding-block:clamp(36px,6vw,64px) 8px; border-top:1px solid var(--line); margin-top:clamp(28px,5vw,48px)}
+.al-grid{display:grid; gap:16px; grid-template-columns:1fr}
+@media (min-width:760px){.al-grid{grid-template-columns:1fr 1fr}}
+.al-card{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:24px; min-width:0}
+.al-card p{color:var(--muted); font-size:14px; line-height:1.6; margin:14px 0 0}
+.al-logo{height:64px; width:auto; display:block}
+.al-3m{display:flex; align-items:center}
+.m3{display:inline-flex; align-items:baseline; gap:8px; line-height:1}
+.m3 b{font-family:"Cormorant Garamond",Georgia,serif; font-weight:700; font-size:44px; color:#b08d4a; letter-spacing:.01em}
+.m3 span{font-family:var(--font-display); font-weight:500; font-size:20px; color:#7a7d80; letter-spacing:.06em}
+.cta-band{margin-top:20px; background:var(--gold); color:#fff; border-radius:10px; padding:24px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+.cta-band h3{font-family:var(--font-display); font-weight:600; font-size:clamp(19px,2.2vw,24px); margin:0 0 4px}
+.cta-band p{margin:0; opacity:.85; font-size:14px}
+.cta-band .btn-solid{background:#fff; color:var(--gold); border-color:#fff}
+</style>
+
+
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Innovation Trading S.A."><img src="marca.png" alt="" width="40" height="35"><span class="brand-mark"><span class="brand-name">INNOVATION</span><span class="brand-sub">TRADING S.A.</span></span></a>
+    <div class="bar-actions"><nav class="nav" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#propiedades">Propiedades</a><a href="#contacto">Nosotros</a></nav><a class="btn btn-solid" href="https://wa.me/595981869933?text=Hola!%20Quisiera%20informaci%C3%B3n%20sobre%20sus%20propiedades." target="_blank" rel="noopener">Contactar</a></div>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="hero">
+   <div class="hero-text">
+    <p class="eyebrow">Innovation Trading S.A. · en alianza con 3M Consultora</p>
+    <h1>Propiedades, tasaciones y proyectos con respaldo técnico y legal</h1>
+    <p class="lede">Te acompañamos en todo el ciclo de una propiedad: saber cuánto vale, proyectar qué se puede hacer, resolver la documentación y encontrar al comprador o la inversión correcta.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid btn-lg" href="#propiedades">Ver propiedades</a>
+      <a class="btn btn-lg" href="#servicios">Conocé los servicios</a>
+    </div>
+   </div>
+   <a class="hero-pics" href="#propiedades" aria-label="Ver propiedades">
+     <img src="fotos/48819308920cd4d1c6cb8678f6be0c21.jpg" alt="Residencia en San Bernardino" class="hp-a">
+     <img src="fotos/119f8cdc651b05b16de1d467cf705159.jpg" alt="Campo agrícola en Curuguaty" class="hp-b">
+     <img src="fotos/6371b514867dca064f1feff729053e2e.jpg" alt="Residencia en Villa Morra" class="hp-c">
+   </a>
+  </section>
+
+  <section class="services" id="servicios" aria-labelledby="svc-title">
+    <div class="sec-head">
+      <p class="eyebrow">Servicios</p>
+      <h2 id="svc-title">Lo que podemos hacer por tu propiedad</h2>
+    </div>
+    <div class="svc-grid">
+      <article class="svc">
+        <div class="svc-ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V10l6-5 6 5v10"/><path d="M10 20v-5h4v5"/><circle cx="17.5" cy="6.5" r="2.5"/><path d="M19.3 8.3 21 10"/></svg></div>
+        <h3>Tasaciones</h3>
+        <p>Informe del valor de mercado de inmuebles urbanos y rurales, con respaldo técnico para decidir con números reales.</p>
+        <ul><li>Para vender, comprar o alquilar al precio correcto</li><li>Respaldo para créditos bancarios e hipotecas</li><li>Sucesiones, divisiones de condominio y aportes de capital</li><li>Análisis comparativo con operaciones de la zona</li></ul>
+        <a class="svc-cta" href="https://wa.me/595981869933?text=Hola%21%20Quisiera%20consultar%20por%20una%20tasaci%C3%B3n." target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8h6v13"/><path d="M11 21V4h8v17"/><path d="M14 8h2M14 12h2M14 16h2M7.5 12h1M7.5 16h1"/></svg></div>
+        <h3>Proyectos</h3>
+        <p>Desarrollo y ejecución de obras, desde la planificación hasta la entrega, cuidando costos, plazos y terminaciones.</p>
+        <ul><li>Viviendas, dúplex y condominios</li><li>Locales comerciales, depósitos y loteamientos</li><li>Remodelaciones y puesta en valor para la venta</li><li>Seguimiento y control de obra</li></ul>
+        <a class="svc-cta" href="https://wa.me/595981869933?text=Hola%21%20Quisiera%20consultar%20por%20el%20desarrollo%20de%20un%20proyecto." target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M9 9v11"/><path d="M12.5 13h5M12.5 16.5h3"/></svg></div>
+        <h3>Anteproyectos</h3>
+        <p>Antes de invertir, sabé qué se puede construir en el terreno, cómo se vería y cuánto costaría.</p>
+        <ul><li>Estudio de cabida y normativa municipal</li><li>Distribución, fachadas e imágenes del proyecto</li><li>Estimación de costos y plazos de obra</li><li>Análisis de rentabilidad para inversores</li></ul>
+        <a class="svc-cta" href="https://wa.me/595981869933?text=Hola%21%20Quisiera%20consultar%20por%20un%20anteproyecto." target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="svc">
+        <div class="svc-ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M7 20h10"/><path d="M5 7h14"/><path d="M5 7l-2.5 6a2.8 2.8 0 0 0 5 0z"/><path d="M19 7l-2.5 6a2.8 2.8 0 0 0 5 0z"/></svg></div>
+        <h3>Asesoría jurídica</h3>
+        <p>Acompañamiento legal y documental para que cada operación inmobiliaria sea segura de principio a fin.</p>
+        <ul><li>Estudio de títulos y verificación registral</li><li>Sucesiones, hipotecas y condominios</li><li>Propiedad horizontal y loteamientos</li><li>Contratos de compraventa, alquiler y arrendamiento rural</li></ul>
+        <a class="svc-cta" href="https://wa.me/595981869933?text=Hola%21%20Quisiera%20consultar%20por%20asesor%C3%ADa%20jur%C3%ADdica%20inmobiliaria." target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </section>
+
+  <section class="intro" id="propiedades">
+    <div>
+      <p class="eyebrow">Propiedades</p>
+      <h2 class="h-props">Casas, terrenos y campos en venta</h2>
+      <p class="lede">Oportunidades inmobiliarias y rurales seleccionadas por Innovation Trading en Asunción, Gran Asunción y el interior del país. Tocá una propiedad para ver fotos, detalles y ubicación.</p>
+    </div>
+    <div class="counts" id="counts">
+      <div class="count"><b>–</b><span>Propiedades</span></div>
+    </div>
+  </section>
+
+  <section class="filters" aria-label="Filtros">
+    <div class="chips" id="typeChips"></div>
+    <div class="filter-row">
+      <input type="search" id="searchInput" placeholder="Buscar por zona, barrio o característica" aria-label="Buscar">
+      <select id="filterZone" aria-label="Zona"><option value="">Todas las zonas</option></select>
+      <select id="filterCurrency" aria-label="Moneda">
+        <option value="">USD y Gs.</option><option value="USD">Solo USD</option><option value="Gs">Solo Gs.</option>
+      </select>
+      <select id="sortSelect" aria-label="Ordenar">
+        <option value="destacadas">Destacadas</option>
+        <option value="recientes">Más recientes</option>
+        <option value="precio_asc">Precio: menor a mayor</option>
+        <option value="precio_desc">Precio: mayor a menor</option>
+      </select>
+      <div class="seg" role="group" aria-label="Vista">
+        <button id="viewGridBtn" aria-pressed="true">Grilla</button>
+        <button id="viewMapBtn" aria-pressed="false">Mapa</button>
+      </div>
+    </div>
+  </section>
+
+  <p class="result-count" id="resultCount"></p>
+  <div class="grid" id="grid">
+    <div class="empty-state" style="grid-column:1/-1"><h2>Cargando propiedades</h2><p>En unos segundos aparecen las fichas con fotos y precios.</p></div>
+  </div>
+  <div id="mapWrap" hidden>
+    <div class="map" id="mapView"></div>
+    <p class="map-note" id="mapNote"></p>
+  </div>
+
+  <section class="alliance" id="contacto" aria-labelledby="al-title">
+    <div class="sec-head">
+      <p class="eyebrow">Quiénes somos</p>
+      <h2 id="al-title">Dos equipos, un mismo respaldo</h2>
+    </div>
+    <div class="al-grid">
+      <div class="al-card">
+        <img src="logo.png" alt="Innovation Trading S.A." class="al-logo">
+        <p>Estructuración financiera, inversiones, desarrollo inmobiliario y agronegocios. Acompañamos a inversores y propietarios en operaciones de todo tamaño.</p>
+      </div>
+      <div class="al-card">
+        <div class="al-logo al-3m"><span class="m3"><b>3M</b><span>Consultora</span></span></div>
+        <p>Consultora inmobiliaria y bancaria. Intermediación de propiedades y gestión de líneas de crédito ante entidades financieras para particulares y empresas.</p>
+      </div>
+    </div>
+    <div class="cta-band">
+      <div>
+        <h3>¿Tenés una propiedad para vender, tasar o desarrollar?</h3>
+        <p>Escribinos y te respondemos con los próximos pasos.</p>
+      </div>
+      <a class="btn btn-solid btn-lg" href="https://wa.me/595981869933?text=Hola%21%20Quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="footer"><img src="logo.png" alt="Innovation Trading S.A." class="footer-logo"><div class="footer-text"><span>Innovation Trading S.A. en alianza con 3M Consultora · Inmobiliario, tasaciones, proyectos y asesoría jurídica</span><span>WhatsApp +595 981 869933 · Precios sujetos a confirmación.</span></div></footer>
+</main>
+
+<!-- Detail -->
+<div class="overlay" id="detailOverlay" hidden>
+  <div class="sheet wide" role="dialog" aria-modal="true" aria-labelledby="d_title">
+    <div class="detail">
+      <div class="d-media">
+        <button class="d-close" id="closeDetailBtn" aria-label="Cerrar">✕</button>
+        <div class="d-hero" id="dHero"></div>
+        <div class="d-thumbs" id="dThumbs"></div>
+      </div>
+      <div class="d-info">
+        <p class="eyebrow" id="d_zone"></p>
+        <h2 id="d_title"></h2>
+        <p class="d-price" id="d_price"></p>
+        <div class="d-facts" id="d_facts"></div>
+        <p class="d-notes" id="d_notes"></p>
+        <p class="d-addr" id="d_addr"></p>
+        
+        <div class="d-actions">
+          <a class="btn btn-gold" id="waBtn" target="_blank" rel="noopener" hidden>Consultar por WhatsApp</a>
+          <a class="btn" id="d_maps" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6"/></svg>Ver en Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="lightbox" hidden>
+  <button class="lb-btn" id="lbClose" aria-label="Cerrar">✕</button>
+  <button class="lb-btn" id="lbPrev" aria-label="Anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-btn" id="lbNext" aria-label="Siguiente">›</button>
+  <div id="lbCount"></div>
+</div>
+
+
+<script>window.PROPERTIES = [{"address": "Caaguazú", "createdAt": 1791905920565, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/UMurbMa9scFmyMTh6?g_st=aw", "notes": "Propiedad de 30 hectáreas + 2.542 m² (superficie total 302.542 m²) en Caaguazú. Terreno con pasturas, monte, curso de agua con pequeñas cascadas y acceso por camino vecinal con tendido eléctrico.\n\nPrecio: Gs. 55.000.000 por hectárea (total Gs. 1.650.000.000).", "photoIds": ["8ccad66b63ba984da42ab36b9dbbaf69", "d00dbde5918e209364390d98bf8239b0", "d054408ea182953b48b56cba0168913b", "4fe90ce4b20d425683762c53260da8c2", "cf9120e9045b5543575053eb86bcd303", "da6242c2a0eb087e30c8e3fc88457629", "b6c52de8560d608f361d8eb697d8e8d8", "3796f73fc228af99b0a315acec8e2e79", "dab6e62977165a79ad4084de8be814fe", "f5e7995890be2ac90d2b3308c28819bc"], "price": 55000000, "priceUnit": "ha", "status": "disponible", "title": "30 hectáreas en Caaguazú", "type": "Campo", "id": "campo-caaguazu-30ha"}, {"address": "Fernando de la Mora, Zona Sur – a 30 m de Avda. Leopardi", "createdAt": 1791893332587, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "", "notes": "Terreno de 6 × 20 m (120 m²), 110 m² construidos. 3 dormitorios y 3 baños.\n\nPlanta baja: living-comedor integrado con cocina, baño social, dormitorio en suite y quincho.\nPlanta alta: dos dormitorios y baño compartido.\n\nUbicado en una de las zonas más buscadas de Fernando de la Mora, a solo 30 metros de la Avda. Leopardi. Combina funcionalidad, confort y ubicación.\n\nSe reciben cartas oferta con previa seña.", "photoIds": ["6403776441eda39c41c9f6275235b7af", "2e8e9dd33c2e0908be9f905623dee599", "41bc22f09bc51d5f80ad44c03f517a8f", "ef70e68c9de83764ad4c027833641b00", "9ca72385980b0d4050a36c798b65b4b2"], "price": null, "status": "disponible", "title": "Dúplex en Fernando de la Mora – Zona Sur", "type": "Casa", "id": "duplex-fdm-zona-sur"}, {"address": "Maramburé, Luque – rápido acceso al centro, al Palacio de Justicia y a la Ruta Luque–San Bernardino", "createdAt": 1791893130666, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/wkDjaZHeK6Kn7Rpo8?g_st=ac", "notes": "Terreno de 12 × 30 m, superficie total 360 m². Zona residencial con rápido acceso al centro de Luque, al Palacio de Justicia y a la Ruta Luque–San Bernardino, cerca de supermercados, farmacias, centros educativos, transporte público y otros servicios esenciales.\n\nCuenta con amplio living, comedor, cocina, 3 dormitorios (1 en suite con baño), baño familiar compartido y lavadero.\n\nUna excelente opción para una familia que busca amplitud y comodidad.", "photoIds": ["cfa5f12580c36de9b7f01d68a373db63", "f4586e1eab7681b691e57389da112cfb", "e21bdbaad7556d9c0bab12a097ba1b29", "de35c3b3291a3c0f2611012ee649c1d5", "950bc5f51e13ce02df94ef7b83f29515", "a290155fc05463b03ef2528d3d69c7f1", "74d2c027bb2ad7e2832e73b03e79999a", "426d9ba5a46049d265d342b213ef2a4f", "edf4d4dc4f7e64bbd8cb37eb8e506822"], "price": 410000000, "status": "disponible", "title": "Amplia Casa en Maramburé – Luque", "type": "Casa", "id": "casa-luque-marambure"}, {"address": "Zona Gral. Garay, Mcal. Estigarribia, Boquerón", "createdAt": 1791480084540, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/iDE64TPaUvrUUE36A", "notes": "Propiedad de 8.000 hectáreas en el corazón del Chaco paraguayo, lindante con la República de Bolivia. Zona Gral. Garay, distrito de Mcal. Estigarribia (Boquerón), a 46 km de la Ruta 9 Dr. Carlos A. López y a 228 km del centro urbano. Apta para proyectos agrícolas, ganaderos y forestales de gran escala.\n\nMejoras existentes:\n• Picadas para desmonte de unas 4.000 ha\n• Caminería interna principal perfilada y laminada, de 61 km\n• Alambrado perimetral y divisorio de 5 hilos con postes de quebracho, aprox. 74,6 km, con balancines y portones\n• Pozo artesiano de 210 m con cañería de 3\" de unos 10 km\n• 5 bebederos de HºA (2 de 10.000 L y 3 de 1.000 L) y tanque metálico para agua\n• Energía con paneles solares\n• Tinglado de 300 m² con techo de chapa\n\nPrecio: USD 7.200.000.", "photoIds": ["60583521680209fe57ef77263c567eac", "c19a5d79d2a5bd4989e0ff2888183413", "1f1c0d4cc805cd8b614269d0164cf15d", "5045308a36ad80122a8bbe82aaa8e043", "852853805a38102fd771d92d0be6ae23", "df388704b6846ee5f472f4694a973c8a", "0edd0af240df6836af37d2edbfcd1c7c", "cbcf9f9e269d77e99c8576ef0bb36cda", "3a8bf1e31e3fa68f905030daca5c44d2", "2f2abe836bdfe31230efebdcc3a59f57"], "price": 7200000, "status": "disponible", "title": "Propiedad agrícola, ganadera y forestal de 8.000 ha en el Chaco", "type": "Campo", "id": "campo-chaco-boqueron-8000ha"}, {"address": "Departamento de Paraguarí", "createdAt": 1791479793985, "currency": "USD", "lat": -26.286169, "lng": -56.868561, "mapsUrl": "https://www.google.com/maps?q=-26.286169,-56.868561", "notes": "Campo mixto de 678 hectáreas en el departamento de Paraguarí.\n\n• 600 ha ganaderas\n• 78 ha con pastura Pangola\n• Casa con amplia galería\n• Hangar\n• Tajamares\n\nPrecio: USD 3.500.000.", "photoIds": ["e87e7ce62fb261462a594f27345b465e", "0bad77b3d0e2c413ddb92000a84e2c62", "2851501b240df54180eba2f9a33ab4fe", "d31ad5cd6cf6a7682eda648c76d32d8d", "9cbbddc8ae906ace25e8b5d03c985167", "02f2758301a601981e2764660cfe0aea", "cab9d3596ee400a28686277bf92dfc63"], "price": 3500000, "status": "disponible", "title": "Campo mixto de 678 ha en Paraguarí", "type": "Campo", "id": "campo-mixto-paraguari-678ha"}, {"address": "Yaguarón, Paraguarí", "createdAt": 1791479637999, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Estancia de 458 hectáreas en Yaguarón, departamento de Paraguarí. Ubicada a 53 km de Asunción, con buen acceso y camino todo tiempo.\n\nInfraestructura:\n• Casa patronal de 320 m², casa de huéspedes y casa de capataz y peones\n• Corral, brete y 4 tajamares\n• Energía ANDE monofásica y pozo artesiano\n\nPlantaciones y pasturas:\n• 2 ha de caña dulce\n• 2 ha de pastura Camerún\n• 15 ha de pastura Brizantha MG5\n• 436 ha de pastura nativa o campo natural\n• 5 ha de monte\n\nPrecio: USD 1.800.000.", "photoIds": ["fc52153465dbd7c1e9f840e23c1a578b"], "price": 1800000, "status": "disponible", "title": "Estancia de 458 ha en Yaguarón", "type": "Campo", "id": "estancia-yaguaron-458ha"}, {"address": "Ruta 3 / Transchaco, Limpio", "createdAt": 1791478535988, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/Ed1RkTyNvXbgqN176?g_st=awb", "notes": "Terreno estratégico de 43.605 m² ubicado sobre la Ruta 3 / Transchaco, en Limpio. Terreno limpio, medidas aprox.: 95 m, 425 m, 490 m y 81 m.\n\nIdeal para desarrollos de gran escala: loteamiento, centro logístico, depósito, estación de servicio, supermercado, complejo habitacional o proyecto comercial.\n\nExcelente frente sobre ruta, alta visibilidad, acceso rápido y entorno en crecimiento. Ubicación clave, alto potencial, inversión segura.\n\nPrecio: USD 13.100.000.", "photoIds": ["3429fe59bfa1e3a8c6707c9c082f0200", "232bba3ab014068f2fc256e9ac22d2e1", "8a9c0d78ddd7a2d3843d3dc7a747295c", "7b761b8f53a3f30e728093a345fc3a3e"], "price": 13100000, "status": "disponible", "title": "Terreno sobre Ruta 3 / Transchaco, Limpio", "type": "Terreno", "id": "terreno-limpio-ruta3-transchaco"}, {"address": "Del Maestro casi Capitán Dimas Motta, Asunción", "createdAt": 1791478443585, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/Z8kF2hMWf9biFSkQ8", "notes": "Terreno de 455 m² (13 × 35 m) sobre asfalto, en calle Del Maestro casi Capitán Dimas Motta, a 150 metros de la Avda. San Martín. Zona de alta valorización, cerca del Shopping Mariscal y Villa Morra.\n\nPrecio: USD 300.000.", "photoIds": ["9e04ef9a60a7b6cacd159389045db45b", "7a1b911138fc81c42933807380c5438c", "5a882cb304f61f0fc57a47bc8ee2e653"], "price": 300000, "status": "disponible", "title": "Propiedad sobre Del Maestro, a 150 m de Avda. San Martín", "type": "Casa", "id": "propiedad-del-maestro-asuncion"}, {"address": "Asunción – esquina Teniente Narváez y Capitán Lombardo", "createdAt": 1791478100000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Terreno de 1.100 m² en total (3 terrenos juntos), con salida a dos calles: Capitán Lombardo y Teniente Narváez.\n\nInstalaciones: 4 cámaras frigoríficas, sala de elaboración muy amplia, rielera desde la entrada hasta la sala de elaboración, oficina amplia, 3 baños y 2 depósitos en planta alta. Estacionamiento propio con portería.\n\nDocumentación y habilitación municipal al día, a transferir.", "photoIds": ["d2ab6f14f82153e6232124f195fc6b2b", "eaa4065a74fda2acb951393ef9d7c0ce", "2f0f53212b1038f2345e8559915091e9", "f58eb583ac88b276f8ac999ce01b7325", "8cdd08f2c7f395d7db8f45a7a97ee8b4", "8bc4f2ea37de7d0a2e090b4a72bcc615", "bd63599dd1f44b44da19432096992d4d", "43238393c35438743bcc5065dfbb1cd2"], "price": 1300000, "status": "disponible", "title": "Planta con Cámaras Frigoríficas en Asunción – Tte. Narváez y Cap. Lombardo", "type": "Comercial", "id": "planta-frigorifica-asuncion"}, {"address": "Distrito de Trinidad, Itapúa – cerca de Hohenau y Obligado", "createdAt": 1791478000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie de 35 hectáreas en el distrito de Trinidad, cerca de Hohenau y Obligado, a pasos de una subestación eléctrica. Campo 100% mecanizado, con bahía y salida al río Paraná. Precio: USD 20.000 por hectárea.", "photoIds": ["50ea5351859031f070f31e0e7a09e571"], "price": 20000, "priceUnit": "ha", "status": "disponible", "title": "Campo de 35 Hectáreas con Bahía al Río Paraná – Trinidad, Itapúa", "type": "Campo", "id": "campo-trinidad-itapua-35ha"}, {"address": "Asunción – Avda. Boggiani y calle Hassler", "createdAt": 1791477605000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Torre residencial de 145 metros de altura y 44 niveles, inspirada en el estilo de vida mediterráneo. Más de 2.370 m2 de amenities: lobby social, coffee lounge y wine corner, piscina, espacios de bienestar, trabajo y entretenimiento.\n\nUnidades monoambiente, de 1 y 2 dormitorios (desde unos 29 m2 hasta 76 m2 con balcón), entregadas con termocalefones, aires acondicionados, mamparas y espejos. Ideal para vivir o invertir en renta.", "photoIds": ["0c3438d5c048fb7d94c46845cac51be8", "3dd235a75e408438e1c1a873b6173356", "cb75e0fe6ea4e7d3caa65d94d5d07778", "d63769e4552c5ca73d1f57a0ab808833", "2dbe80ae7752570e4be0aef9e97d0590"], "price": null, "status": "disponible", "title": "Cittadina – Departamentos en Torre de 44 Niveles, Asunción", "type": "Departamento", "id": "cittadina-torre-asuncion"}, {"address": "Compañía Karaimi, Ybycuí, Paraguarí – detrás del Parque Nacional Ybycuí, a 135 km de Asunción", "createdAt": 1791477604000, "currency": "USD", "lat": -26.019444, "lng": -56.786889, "mapsUrl": "", "notes": "Superficie de 40 hectáreas y 614 m², con escritura y mensura judicial. Casa principal de dos plantas con unos 765 m² cubiertos: en planta baja hall, cocina comedor, sala, comedor social, 3 dormitorios amplios, baños modernos, gran salón con galería tipo corredor y depósito; en planta alta 2 dormitorios, baño, sala comedor y terraza con vista al arroyo y la serranía. Construcción adicional de 36 m² con baño y cocina fogón campestre.\n\nEnergía ANDE con transformador propio, agua de naciente natural con motobomba. A 15 minutos del Salto Cristal, 20 del Salto Mbocaruzu y 30 de La Rosada. Vecinos: Azucarera AZPA y Estancia La Noruega.", "photoIds": ["0436f086f3a341144a8fbf8fea6ae16c", "144c86a101828d16cd64881bc65ea7e8"], "price": 350000, "status": "disponible", "title": "Propiedad Rural con Casa en Ybycuí – Paraguarí", "type": "Campo", "id": "propiedad-rural-ybycui"}, {"address": "Santa Rita, Alto Paraná – Barrio Centro, calles Unión y Eusebio Ayala", "createdAt": 1791477603000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/fseUB4qkxPhQNmEd6", "notes": "Terreno de 10.000 m² sin edificaciones, en zona residencial consolidada del centro de Santa Rita, a dos cuadras de la Ruta PY06 (Avda. Dr. Juan León Mallorquín). Salida a dos calles pavimentadas (Unión y Eusebio Ayala). Ideal para desarrollo inmobiliario, viviendas o desarrollos mixtos. Valor de referencia en la zona: USD 180 por m².", "photoIds": ["525217119b0a7146ed6e0c97ed596189", "a0ab5bce7897f02184a6b3e293ee9e62", "308852f0d14cf49a3e69c71b467750fe", "12fe436b30ffd35b85d6ec7ebc5ca747"], "price": 1300000, "status": "disponible", "title": "Terreno de 10.000 m² en Santa Rita – Alto Paraná", "type": "Terreno", "id": "terreno-santa-rita-10000m2"}, {"address": "San Antonio, Barrio San Francisco – a 100 m del asfalto", "createdAt": 1791477602000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/3VgBM2LRTcopqBkM6", "notes": "Superficie de 28.893 m² en el corredor industrial del sur del Área Metropolitana. A 100 metros del asfalto que conecta con la avenida principal de San Antonio, con 2 accesos adicionales. Rápida conexión con la Ruta PY01 (Acceso Sur), Asunción, Ñemby, Villa Elisa, Ypané y Villeta, y cercanía a puertos sobre el río Paraguay. Línea de alta tensión en las inmediaciones.\n\nIdeal para loteamiento o barrio cerrado, centro logístico o naves industriales, o desarrollo de uso mixto.", "photoIds": ["26f15cdd97077daf614d796c433acf01", "89e951fdac35874783c4adc9035f072a", "bcd8fbb1b6ad9bd11708e89443d79542"], "price": 200000, "status": "disponible", "title": "Terreno de 28.893 m² en San Antonio – Barrio San Francisco", "type": "Terreno", "id": "terreno-san-antonio-28893m2"}, {"address": "Nueva Italia, Departamento Central – lugar Chaco-i (Fracción A), a 57 km de Asunción", "createdAt": 1791477601000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/4FZWSNPyQ2H2YJGQ7", "notes": "Superficie total de 1.400 hectáreas en el eje Villeta – Nueva Italia, zona portuaria e industrial en crecimiento. A 8 km del centro de Nueva Italia, 24 km de Guarambaré y 57 km de Asunción.\n\nTierra virgen de alta fertilidad, apta para manejo mecanizado. Apta para agricultura, ganadería (incluso feedlot / confinamiento bovino) y forestación, y con potencial para maquila, agroindustria y logística por su cercanía a puertos de la hidrovía Paraguay–Paraná.\n\nPrecio de venta al contado: USD 1.300.000.", "photoIds": ["995d8e9c6304a80215888e75b5a240c2", "448c3fa6a0aa79467da063ed6a3ab6b7", "1169dd1e93b38f3523cbfe74c32f64d7", "fcdea88adfb776885d5af1ad3b23ae24"], "price": 1300000, "status": "disponible", "title": "Estancia de 1.400 Hectáreas en Nueva Italia – Central", "type": "Campo", "id": "estancia-nueva-italia-1400ha"}, {"address": "Bajo Chaco, Presidente Hayes – costa al Río Paraguay, a 200 km de Asunción", "createdAt": 1791477600000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie de 5.900 hectáreas con costa al Río Paraguay, a 200 km de Asunción. Sobre la Ruta del Arroz (100 km menos, en desarrollo). Apto para arrozal. Campo productivo al 100%, con muy poco bosque. Infraestructura ganadera completa.", "photoIds": ["ea5c4311375a43fe84035e3224693f0b"], "price": null, "status": "disponible", "title": "Campo de 5.900 Hectáreas sobre el Río Paraguay – Bajo Chaco, Pte. Hayes", "type": "Campo", "id": "campo-pte-hayes-5900ha"}, {"address": "Asunción, zona Eje Corporativo – cerca de Shopping del Sol, Mariscal López y Paseo La Galería", "createdAt": 1791471000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Terreno de 4.461 m² en la franja más exclusiva de Asunción. Construcción: subsuelo 575 m², planta baja 840 m², planta alta 490 m² y altillo 228 m², más piscina, caseta y murallas.\n\nLa Casa Austria fue construida por un empresario alemán de origen austríaco: arquitectura que mezcla clasicismo europeo con detalles coloniales paraguayos, techos inclinados, amplios ventanales y barandas de hierro forjado.\n\nAtributos: piscina panorámica y áreas de esparcimiento, gimnasio y spa, estacionamiento cubierto, conectividad e internet corporativo, infraestructura preparada para huéspedes ejecutivos. A pocos metros de hoteles (Sheraton, Dazzler, Aloft), centros comerciales, sanatorios y universidades.\n\nPotencial: restaurante boutique o café cultural, lobby VIP / casa club y espacio corporativo. Abierto a socios desarrolladores, aportantes de capital, franquiciados y alianzas estratégicas.", "photoIds": ["30624a219695f53370ffd630df18eb60", "01bd591be14032e81b1704ccc8eff88e", "1bda6e578f752aa816bfa1ccf377e20d", "3c047453557a026137ac35750cad6a3a", "862809ffe63e8c968b9dca94f420d10e", "9ac2dfad08e991a501b07c292999a503", "61fad788b6909984277ced21e5e90416", "2ec22273d22f68cacabf6f362ae15677", "641aee06b48ee2ae054154576351dafa", "7bf48084c611e5c002594521edf00e55"], "price": 5500000, "status": "disponible", "title": "Apart Hotel Suite & Convención “Casa Austria” – Asunción", "type": "Comercial", "id": "casa-austria-apart-hotel"}, {"address": "Barrio Puerto Pabla, Lambaré", "createdAt": 1791469800000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/MUUPnxhJVzYSa1DS7", "notes": "Terreno 608 m² aprox., construcción 290 m² aprox. 3 dormitorios amplios, 2 baños, sala, cocina, galería y estacionamiento. Pozo artesiano de 120 m y tanque de 10.000 L, energía trifásica, portón eléctrico y alarma. Ideal para la familia o como inversión segura en una de las zonas más buscadas de Lambaré.", "photoIds": ["496be7fbb3602049a6e536fd7a9e6f70", "8180bed7f32f94f1320952446cb0fc36", "9925c326145c414e811cb48cb02eee69", "70a8c805d33651975b802db6d68bb0e7", "dcf1cf462da3e2a16f50d7bee9f7f75d", "5546602187a8c8b38cd6f8d6e9b51d4a", "79425cbedcd2711bc06ccccc6ce2aa3d", "bd329d61d1dadecbbf646ceec7d028c5", "01165344500f4c5eca35594a858e06f6", "3ac47c7b3ca33a5f9688840fb82458e0"], "price": 310000, "status": "disponible", "title": "Casa en Lambaré – Barrio Puerto Pabla", "type": "Casa", "id": "casa-lambare-puerto-pabla"}, {"address": "Villeta – sobre ruta asfaltada Py19 Villeta–Alberdi, salida a ruta Guarambaré", "createdAt": 1791297010000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/xtbZ97esCj6sbvnu5?g_st=aw", "notes": "Superficie 3,6 hectáreas con infraestructura y todos los servicios. Acceso sobre ruta asfaltada Py19 Villeta–Alberdi, con salida a la ruta a Guarambaré. Ideal para logística de transporte y otros usos.", "photoIds": ["539254af0aac429db58ba6503affbb35"], "price": 1500000, "status": "disponible", "title": "Predio de 3,6 Hectáreas sobre Ruta Py19 – Villeta", "type": "Comercial", "id": "predio-villeta-py19"}, {"address": "Barcequillo, San Lorenzo – a pasos de Avelino Martínez, zona Coca Cola", "createdAt": 1791297009000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Manzana completa de 18.000 m² en Barcequillo, San Lorenzo, a pasos de la avenida Avelino Martínez, zona Coca Cola.", "photoIds": ["70d1e8ca1b25f5241bbcc34d0beb89a3"], "price": 3000000, "status": "disponible", "title": "Manzana Completa de 18.000 m² en San Lorenzo – Barcequillo", "type": "Terreno", "id": "manzana-san-lorenzo-barcequillo"}, {"address": "Villa Oliva, Ñeembucú – a 3 km de la ruta Villeta–Alberdi", "createdAt": 1791297008000, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "", "notes": "Finca de 275 hectáreas y 9.938 m² con costa sobre el Río Paray. Relieve ondulado, tierra fértil. Ideal para forestación, agricultura, arrozal, turismo y ganadería. Acceso a 3 km de la ruta Villeta–Alberdi.", "photoIds": ["c24f755fde4109f0fa17430af1b83f78"], "price": 7000000000, "status": "disponible", "title": "275 Hectáreas sobre el Río Paray en Villa Oliva – Ñeembucú", "type": "Campo", "id": "campo-villa-oliva-275ha"}, {"address": "Arroyos y Esteros, Cordillera – a 45 minutos de Mariano Roque Alonso", "createdAt": 1791297007000, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "", "notes": "Propiedad rural de 318 hectáreas, ideal para desarrollo productivo, ganadero y agrícola. Aproximadamente 40 hectáreas de eucaliptos plantados con camino de acceso hasta el área forestal. Atravesada por 2 arroyos que confluyen y desembocan en el río, con abundante disponibilidad de agua. Chiquero y gallinero, área de granja y estancia, caminos internos. Apta para forestación. Precio: Gs. 15.750.000 por hectárea.", "photoIds": ["021b4f5331938ee47969436aa0531d5a", "2629353e7d7b3170781806dfbb48e242", "2da4a55a6f3b96bf0fa76e0856f7a5d8", "42a3a0bbc2f46e7df1829611ba53be46", "9be708fd82684341cf9fca8fdad7d41d", "8da2947658895ab72c4d543801840b3f", "46ebc02bf0bc6d6fc979cdd9d1ed34aa", "9cabfe246d0ab00353fcac3128673945", "3592c4dbdc67cf30c663bdb117330361", "1e3b263c322860eb3689d5cf72074780"], "price": 15750000, "priceUnit": "ha", "status": "disponible", "title": "Estancia de 318 Hectáreas en Arroyos y Esteros – Cordillera", "type": "Campo", "id": "campo-arroyos-y-esteros-318ha"}, {"address": "Minga Guazú, Alto Paraná – km 21, sobre ruta internacional Py02", "createdAt": 1791297006000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie 3,5 hectáreas sobre la ruta internacional Py02, km 21, zona Ciudad del Este. Infraestructura de primera.", "photoIds": ["0352c7c7bbc812e02d798860605cc07b"], "price": 1650000, "status": "disponible", "title": "Predio de 3,5 Hectáreas sobre Ruta Py02 – Minga Guazú", "type": "Comercial", "id": "predio-minga-guazu-km21"}, {"address": "Capiatá, sobre Ruta 2, km 17/18", "createdAt": 1791297005000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie 28.000 m², con 74 m de frente sobre Ruta 2 y 540 m de fondo sobre calle lateral asfaltada. Galpones techados de 4.500 m², estructura de hormigón de 2 plantas con oficinas y depósito de 1.300 m², obras exteriores con pavimento y empedrado.", "photoIds": ["b7758e154c3ae150f9bcbd8017bd7903"], "price": 6000000, "status": "disponible", "title": "Predio Industrial sobre Ruta 2 en Capiatá", "type": "Comercial", "id": "predio-capiata-ruta2"}, {"address": "Mayor Otaño, Itapúa", "createdAt": 1791297004000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/7UjgLY2ex679GWTS9?g_st=aw", "notes": "Campo agrícola premium de 3.500 hectáreas, 70% mecanizado, con planta de soja. Apto también para forestación. Precio: USD 12.500 por hectárea.", "photoIds": ["65eb4b169480d80141ccca982dda6df2"], "price": 12500, "priceUnit": "ha", "status": "disponible", "title": "Campo Agrícola de 3.500 Hectáreas en Mayor Otaño – Itapúa", "type": "Campo", "id": "campo-itapua-mayor-otano"}, {"address": "Ypané, Central – acceso por agua y ruta asfaltada", "createdAt": 1791297003000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie 300 hectáreas sobre el Río Paraguay, con acceso por agua y por ruta asfaltada. Apto para puertos, desarrollos inmobiliarios, zona industrial, hotelería y logística. Cruza el campo una torre de 500 kVA. Precio: USD 19 por m².", "photoIds": ["ea6307cc5d020a8e9a1014c136048e19"], "price": 19, "priceUnit": "m²", "status": "disponible", "title": "300 Hectáreas sobre Río Paraguay en Ypané", "type": "Campo", "id": "campo-ypane-rio-paraguay"}, {"address": "Bajo Chaco, zona Takuara, km 100 – a 17 km de la ruta Transchaco", "createdAt": 1791297002000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie 1.045 hectáreas. 700 ha de pangola en potreros de 10 ha y otros 23 potreros con brizanta y clavel. Infraestructura completa y nueva: corral para 1.000 cabezas, alambrados de 5 hilos con madera dura, 8 tajamares, 3 australianos, báscula de 1.200 kg, viviendas excelentes, energía ANDE. Precio: USD 1.500 por hectárea.", "photoIds": ["fc6bc9bf9511d59328b59651d704121d", "6a3d9bccfde82d98c9147eb6d5fb8951"], "price": 1500, "priceUnit": "ha", "status": "disponible", "title": "Estancia de 1.045 Hectáreas en Bajo Chaco – Takuara", "type": "Campo", "id": "campo-bajo-chaco-takuara"}, {"address": "José Falcón, Santa Rosa, Presidente Hayes – acceso por ruta 12", "createdAt": 1791297001000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Superficie 220 hectáreas, ideal para desarrollo de barrio cerrado o club náutico. Costa de 2 km sobre el Río Pilcomayo, acceso por ruta 12, a 15 minutos de Asunción. Título a transferir. Precio: USD 20 por m².", "photoIds": ["90c1ee2ecedc557ea6d6752b73286b85"], "price": 20, "priceUnit": "m²", "status": "disponible", "title": "220 Hectáreas sobre Río Pilcomayo – Presidente Hayes", "type": "Campo", "id": "campo-pte-hayes-220ha"}, {"address": "Curuguaty, Canindeyú", "createdAt": 1791297000000, "currency": "USD", "lat": -24.417778, "lng": -55.839111, "mapsUrl": "https://maps.app.goo.gl/Y7GX1U6ALDcoeD1V7?g_st=aw", "notes": "Establecimiento de 1.001 hectáreas en Curuguaty, Canindeyú.\n\n• 500 ha mecanizadas para cultivos de soja, maíz, etc.\n• 75 ha de pastura silvopastoril implantada (Brizantha y Colonial)\n• 50 ha de pastura Bombaza\n• 125 ha de kapuera con pasturas\n• 250 ha de reserva natural según ley\n• Más de 3.000 m sobre el río Curuguaty, aprox. 2.500 m del arroyo Yuquerimi y 1.400 m del arroyo Juanita\n• 3 nacientes de arroyos, 15 km de caminos internos\n• Tendido eléctrico monofásico\n\nDistancias: Asunción 265 km, Ciudad del Este 280 km, Caaguazú 155 km, Coronel Oviedo 150 km, Salto del Guairá 185 km, Ypejhú 85 km, San Pedro 85 km.\nSilos próximos: Diagro 15 km, LDC 19 km, ADM 27 km, Agrofértil 28 km.\n\nPrecio: USD 8.000 por hectárea, negociable.", "photoIds": ["119f8cdc651b05b16de1d467cf705159", "c1211efb754efbc5f40c60d50eab1e11", "0f2f48625ba346143a14591874fb559f", "b7443b005f8adb731ed9b6657229b613", "e780fc3856abad6d6a9c0c49d4a2bcfb", "fadfe608d4f4f2391e863e2248d9dba0", "ab425cc278f9187fc4ce2436b758f481", "1f296a4cc099365df2614904d8e143bc", "dd35a40058d28af32efec0911f00816a", "66b39c90af2ca3331762dad0a72ff45c"], "price": 8000, "priceUnit": "ha", "status": "disponible", "title": "Establecimiento Rural de 1.001 ha en Curuguaty", "type": "Campo", "id": "campo-curuguaty"}, {"address": "Villa Elisa – a pasos de Avda. Colonia Elisa y Acceso Sur", "createdAt": 1790708500000, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/5dHuCwtSXLkR4qEFA?g_st=awb", "notes": "Terreno 100 m², construido 70 m². Living/comedor, cocina amoblada, 2 dormitorios, 1 baño, quincho, estacionamiento para 2 vehículos. Zona estratégica con todo al alcance.", "photoIds": ["85689e27b24edceb2a5a82d2e9c19daa", "a4293a1c8f869f7472b6925e9fe02f48", "4ca10dae249aa404a0bc91f2486935fc", "9348abb9db53f8bacc582f815df18393"], "price": 350000000, "status": "disponible", "title": "Chalet en Villa Elisa", "id": "chalet-villa-elisa"}, {"address": "Puerta del Lago, San Bernardino – frente al Lago Ypacaraí", "createdAt": 1790708000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "Residencia moderna con vista directa al lago. Planta alta: 2 amplias suites y 1 Master Suite con mayor comodidad y luminosidad. Planta baja: 3 habitaciones en suite, amplio living-comedor integrado, cocina práctica y funcional, baño social, habitación con baño para área de servicio. Exterior: amplio patio, piscina y vista directa al lago.", "photoIds": ["0e8f90dc0753adbef12e9c82e349a444", "f5fffc6e8daad60509b8679e91449e09", "db1861c6f7bd54ffc3556970b5cdd038", "f6f01d5454c2a70c10d3510f81e3248a", "11dca7da84c42b970ace8cc4041c3a00", "f51081593d16c19454f64dbf03732868", "7216788e77feea3355af1600b3c3f5d6", "897d4cdad85340dd598bcc40989381c9", "aed67a3ea8ce5b234c0e9fc3fe0781dd", "a4440c73e3e0000af1bb3844ff8689c0"], "price": 1200000, "status": "disponible", "title": "Residencia de Lujo en Puerta del Lago – Frente al Lago", "id": "puerta-del-lago-frente-lago"}, {"address": "Puerta del Lago, San Bernardino – a 300m del Lago Ypacaraí, sobre doble avenida principal", "createdAt": 1790700000000, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/LYQmiS6vVraxx8qc6?g_st=awb", "notes": "Superficie 890,86 m². Incluye mobiliario, amenities y equipamiento existente. Casa principal con amplia galería, galería rústica (techo kapi'i), living principal con mobiliario integrado, comedor full equipped, cocina funcional integrada, 5 dormitorios con placares y mobiliario incorporado, Master Suite con hidromasaje, todos los ambientes climatizados. Amplio patio y áreas verdes, piscina con media sombra, quincho con parrilla y área social exterior, dormitorio independiente y baño social, pergolados. Incluye TV, sistema de sonido, equipos de frío, sillones, reposeras y mobiliario exterior, cuadriciclo, UTV recreativo, mesa de pool y demás equipamiento recreativo. Ideal para disfrute familiar o inversión en zona de veraneo consolidada.\n\nForma de pago: entrega del 50% y saldo con financiación propia.", "photoIds": ["f0d4380260e052c84f0f89e6e201b7b1", "3b171ead8a28b64cb881609344eeffdb", "1eb32928b05831adbb30f348d96550c9", "f4266541ee17a41ae9018a594a5fd2b1", "7b2f7b7cd8276d93f0c6c23b2e3c6f72", "deee0164b13ab167827f90ab1b20fe0d", "4a392525d1b53ce09737940afd397eff", "85f7bb65efdef84e40e6b87f4af6748b", "127acb6e1dbb246c5c8e017ec99c2c3b", "3d6975327908918cdc92c85c91389909"], "price": 320000, "status": "disponible", "title": "Exclusiva Casa de Verano en Puerta del Lago – San Bernardino", "id": "puerta-del-lago-sanber"}, {"address": "Villa Morra, Asunción", "createdAt": 1790466287801, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "", "notes": "5° piso, depto 503, 65 m². Living, cocina/comedor, 1 dormitorio, vestidor, 1 baño, área de lavado, balcón, estacionamiento propio. Amenities: piscina, salón social, gimnasio, patio interno.", "photoIds": ["74ce25ec29be4fdee746ce6c65e2de0f", "eeb8a03bdf3d8a795a06023ea2f6797a", "a57d8bac9c3ba3bd5e8bfa87e7984ff8", "e9681b5638c25ee8f05c2263c3ede1ba", "d01210c23e341bc7ada32081cc33ff94", "3dce67c603069c27a0ed734b4e2c6ac6"], "price": 125000, "status": "disponible", "title": "Departamento en Edificio Garay 530", "id": "z3qfz3ha2ukae3i2mw91"}, {"address": "Ruta Asfaltada Gral. Marcial Samaniego, Itá, 3km Itá centro / 5km Itauguá centro", "createdAt": 1790466287498, "currency": "USD", "lat": -25.4874741, "lng": -57.3603012, "mapsUrl": "https://maps.app.goo.gl/Zy4Ux1u6F1zVF4zf7?g_st=awb", "notes": "Total 1.804,92 m², de esquina a esquina, sobre asfalto.", "photoIds": ["c5d06c24a0e2af8781233cf23b5b3609", "233b053c974d777cc5839b41a1dd73f7", "cfc3fdedad0c540f8d26dad0d3f0c319", "bb2e5c925a68dc254463c09415287207"], "price": null, "status": "disponible", "title": "Terrenos en Itá", "id": "unc2m4nw51dpqb1nk6pm"}, {"address": "Avda. Zavala cue, Fernando de la Mora Sur", "createdAt": 1790466287137, "currency": "Gs", "lat": -25.3340453, "lng": -57.5600421, "mapsUrl": "https://maps.app.goo.gl/UC1XLbVaXNHkNqz78?g_st=awb", "notes": "12x32m, 384 m² superficie, 360 m² construido. Tasación marzo 2025.", "photoIds": ["09f35d882e9093efa477c9b94d774d8b", "700e3079518617ca96ac1ab811e5c8c9", "d8c0de6c785e3fbf8fd24d322946a702", "709142fbd49e336ed878bf5d5b5b9b95", "25566f16b369ea9fa54b3f8260a1ccef", "a0030a69be3265ce2d99d66918b45e52", "30a3a1af1afbf3f826ad96486f5ffa8d"], "price": 810000000, "status": "disponible", "title": "Depósito tipo Tinglado – Fernando de la Mora Sur", "id": "0r0givlzfx7abmzapwhi"}, {"address": "Ñemby, Barrio Caaguazú, esquina", "createdAt": 1790466286788, "currency": "Gs", "lat": -25.4186702, "lng": -57.5204036, "mapsUrl": "https://maps.app.goo.gl/swBn96XQLLw2Cw37A", "notes": "2 dormitorios, hall de acceso, sala, cocina-comedor, 1 baño, lavadero, acceso vehicular para 2-3 vehículos, ubicación en esquina.", "photoIds": ["7242262bb2d0d2833898f80f7264d6f5", "76bb7d603307d36e857d2420db8312b6", "9d429d003aaba847ab75b7402789d181", "6f954ffb2249de5da27334557dcbc12d", "0c94395214ccaf3907a6632db43b6a8e", "275285d85a75b85581b77cdb56cf8fc5", "97cf1915aa0990749bdca79d57b85c46", "e5d0ca0fa575ebed25617d1f223a9d38", "9f21e0e5b7c3d87c69e8cbf79b272b7d", "0bbcab5d6967e25dfee066b187f84b2c"], "price": 380000000, "status": "disponible", "title": "Chalet en Ñemby – Barrio Caaguazú", "id": "8l6mys2vochlcbmqk5dk"}, {"address": "Fernando de la Mora, zona sur, zona Tigo", "createdAt": 1790466286381, "currency": "Gs", "lat": null, "lng": null, "mapsUrl": "", "notes": "Terreno 8x15 (120 m²), construido 180 m², estilo minimalista. Dormitorio en suite con vestidor y balcón, 2 dormitorios con placares, living integrado, cocina amoblada, depósito, lavandería, garaje 2 autos y baulera. Apto crédito bancario.", "photoIds": ["9efa7fa854d1f1d433fecd48a7c6d59e", "f1544d73fde3be1ae76347c7159cc6ac", "78fcd01c2787ddde89c3bcaba0fcc829", "13c35b13dd4a546486067cf7c036e3dd", "d51801be691d4fa37fefcdefa14f8421", "61c8497719902e9879633dd991e0b340", "a8d17d1b3508f0daea68ee3e9e255456", "285c6188c995b7488bfeb79115d72386", "b434626152785859345656bb7946e654", "9402a25dc65f0b02056fd4c7d8fef867"], "price": 620000000, "status": "disponible", "title": "Dúplex 3 Dormitorios en Fernando de la Mora", "id": "d7rvslucuksg3c33hg5o"}, {"address": "Villeta", "createdAt": 1790466285964, "currency": "Gs", "lat": -25.5095172, "lng": -57.567968, "mapsUrl": "https://maps.app.goo.gl/h9fwj4fxZzhv9T8C9", "notes": "Terreno 736 m² (17x43,30), construcción aprox. 440 m², 3 habitaciones, 2 baños, salón comedor integrado, quincho con parrilla, estacionamiento para 4 vehículos, incluye 2 salones comerciales con renta activa.", "photoIds": ["4f01bc4410c9c122a0a40ab6719a2fe1", "d402789caae95a316f6557de93c88541", "fed103ea1886496186549ee28bbd9553", "0d44f823b97f84024ad700be4b046992", "a6ae2560dfc3a76756c38bac7c6c96f3", "5b6229a44a81e70f0b48652758c69f94", "ac301ff0eef08a806642fee5e5b6152f"], "price": 450000000, "status": "disponible", "title": "Casa en Venta en Villeta – Viví e Invertí", "id": "p0vbsa5p48jrkrarlew7"}, {"address": "Barrio San Juan, Itauguá, acceso desde Ruta PY02 Km 25, zona Piro'y", "createdAt": 1790466285558, "currency": "Gs", "lat": -25.3838112, "lng": -57.3928841, "mapsUrl": "https://maps.app.goo.gl/5e1nrdfZcjGZ3VpF6", "notes": "Terreno 12x30m (360 m²), construcción aprox. 100 m², 2 habitaciones, 1 baño, sala de estar, cocina, pequeño depósito, amplio patio frontal y trasero.", "photoIds": ["7d7b6779e84cb3651a0a5c0ee4fc736b", "41f9b51becc54d09e11d0a984f7b5eca", "78fc91b69dc0d3c81782bb920209cc11", "2e42b19cb15aca67b197d72f45d72d72", "686c3da904de6092ff07a4dad91c5d48", "685fe7561eb33456697ed2b669a5bf0f", "0ae0011597377637fab4c33d3382abdc"], "price": 270000000, "status": "disponible", "title": "Casa en Barrio San Juan – Itauguá", "id": "tah4nj16rfktabvmupao"}, {"address": "Luque, Zona Oga Ciudad Jardín", "createdAt": 1790466285149, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://maps.app.goo.gl/NCPmr14jkkSTobvn7?g_st=awb", "notes": "Excelente oportunidad para inversores y desarrolladores. Terreno de 5.300 m² con medidas aproximadas de 150 x 35 metros, en Zona Oga Ciudad Jardín, Luque: una zona de constante crecimiento y alta demanda residencial.\n\nIdeal para condominio, dúplex, loteamiento, casa quinta o proyecto comercial. Entorno consolidado con servicios, comercios e instituciones cercanas. Amplio frente y excelente potencial de desarrollo.\n\nPrecio: USD 350.000.", "photoIds": ["f411d3efd380ded613bd46141b215765"], "price": 350000, "status": "disponible", "title": "Terreno Estratégico en Luque – Ykua Karanday", "type": "", "id": "duu9126rqbz8zzn089u2"}, {"address": "Las Mercedes, Asunción", "createdAt": 1790466284788, "currency": "USD", "lat": null, "lng": null, "mapsUrl": "https://share.google/XmHEKrNkZfRfDSN16", "notes": "Monoambiente 38,5 m² (3er piso), cocina amoblada, placar, baño en suite, balcón, cochera 1 vehículo, piscina, quincho.", "photoIds": ["97ce7b8b214229e94274fbdd1ec67569", "3537137e354d9877055edc51c320c40d", "21e7e0afff2389d8de9abc55a90621b2", "0f5a88b61b447ecdf539116e49680cca", "d5dc3f9fe87b7c9e838e75ca3d8aa9a1", "da97025227a7e56a84c21415baf2ba12"], "price": 68700, "status": "disponible", "title": "Departamento en Edificio La Mercedia", "id": "fxtij339o81f1qyaku26"}, {"address": "Luque, Costa Sosa, a 600m de Avda. de Las Residentas", "createdAt": 1790466284392, "currency": "Gs", "lat": -25.294157, "lng": -57.454192, "mapsUrl": "https://maps.app.goo.gl/KZCzHKXe7w4ppGho7", "notes": "Terreno de 1.332 m² (25m frente x 53,30m fondo), plano, listo para construir, acceso por calle empedrada.", "photoIds": ["4eea2394ec8d9e4826a5a16a71d2b6a2", "315a36b47f8dd443da6f11595055c103", "04cec68886a6ec1dfd952f220e43f1d6", "fdc5db7f212a578d8f493a9432137099"], "price": 350000000, "status": "disponible", "title": "Terreno en Luque – Costa Sosa", "id": "e8ib08bco540291slu2n"}, {"address": "Barrio San Pablo", "createdAt": 1790365781195, "currency": "Gs", "lat": -25.3265421, "lng": -57.578075, "mapsUrl": "https://maps.app.goo.gl/XiACVCT3XagsDtU36?g_st=awb", "notes": "Superficie 360m². 4 dependencias, 2 baños, estacionamiento. Excelente ubicación y conectividad, buen potencial de aprovechamiento.", "photoIds": ["292385190de04beb4bec217800845081", "48a22e5f043c3c6490f4cf13fb63c686", "51a68c1c33644deebb09f8c88f0e22ab", "9dc87eb43aab81f2d553b62e7b98e814", "3ab30dfd4bf81dcf69e1287383ea4ce8", "48b06ecdf66b43bda55aff4a8487987d", "15ccf9a9df20a25cbe8cd63a7217ceb5", "106456e93cd2b745fb2abba4ce5ddbe6", "5cfc2892313cdac77811f85ae0231c96"], "price": 500000000, "status": "disponible", "title": "Propiedad en Barrio San Pablo", "id": "ghgfph59uuegjjzwo352"}, {"address": "Surubi'i, a 1.800m de la entrada principal", "createdAt": 1790365658052, "currency": "USD", "lat": -25.1809464, "lng": -57.5178091, "mapsUrl": "https://maps.app.goo.gl/FGJoKF2AbrvgjSr89?g_st=awb", "notes": "Superficie total 21.806m². Precio USD 110/m² (total aprox. USD 2.398.660). Oportunidad para desarrolladores e inversionistas.", "photoIds": ["3dc237915a310211be6ba5730e24b481", "463cf294be5ee81fad51effc81cbfe38", "51a8e39b0ef57cfcbb83919058ebf04b", "00227c945cc16b4b6612e81262fb10e4", "8cce800f284672dd9b9d518fea3151ef", "5595eb742766b1bdf802ded3a227aa3d", "448ca2b419e38ac12275de34fdce05fe", "c8cea7ee71d73193aa73c8d36306eb3f", "2fdcc763d88170970e4d47257665cc25", "02a342f394b13dbc58aec10eb5c4ce8f"], "price": 2398660, "status": "disponible", "title": "Exclusiva Propiedad en Surubi'i - Zona Alta", "id": "vcpzerifk0bv2aj0450i"}, {"address": "Villa Morra, Asunción", "createdAt": 1790365507084, "currency": "USD", "mapsUrl": "", "notes": "Terreno 1000m², construidos 1000m². PB: jardín frontal, garage techado 4 vehículos, hall y recibidor, living social, comedor social, baño social, comedor diario, TV room, cocina amoblada de alta calidad, galería tipo quincho, piscina climatizada exterior, área de servicio completa (dormitorio, baño, lavadero, depósito). 1er piso: doble escalera de acceso, doble estar íntimo, 3 dormitorios en suite con vestidor. 2do piso (Máster Suite): estar íntimo, living con chimenea, dormitorio principal amplio, 2 baños con hidromasaje, vestidor tipo máster, salón privado con piscina cerrada y estar.", "photoIds": ["6371b514867dca064f1feff729053e2e", "e6230aedd337897128e00745a5dfd739", "b532d67642f99ea09ddb4926a71f5384", "351bd51e89053006199f83e7d32f03ec"], "price": 1600000, "status": "disponible", "title": "Exclusiva Mansión en Villa Morra", "id": "1bgtpcddmnaphl001yyg"}, {"address": "Sobre Antequera, entre Azara y Herrera, Asunción", "createdAt": 1790365314450, "currency": "Gs", "lat": -25.2874361, "lng": -57.6307985, "mapsUrl": "https://maps.app.goo.gl/bXGAoEgenErZXt7M9", "notes": "Superficie 110,81m². Expensa mensual Gs. 500.000. Living/comedor amplio y luminoso, cocina amoblada, 3 dormitorios, 2 baños modernos.", "photoIds": ["020cafdfcc4c3f609b2322cb78cc3deb", "914042dbdfd80d223890c4aacb0e87a7", "35d63a84f84a748d14c466acf3df2f1c", "af0623334a650019572a53dc04bf7ef6", "023e20a391978f47651367c977a33ccf", "9b4172b3fdbc0e5dba8556b5dd453df8", "98204e308127e58c88a814a67a052f54", "b6d3469ed74eb3dfb060c509a1de1830"], "price": 500000000, "status": "disponible", "title": "Departamento en Edificio Alfar II – Zona Centro", "id": "5ln5qtjf7kqxhmqriyto"}, {"address": "San Lorenzo", "createdAt": 1790363813332, "currency": "Gs", "mapsUrl": "https://maps.app.goo.gl/51hKMXLkRCNZCyYA8", "notes": "Terreno 16x25m (400m²), construida aprox. 300m². PB: hall de acceso, living comedor amplio, cocina equipada, oficina/estudio, 1 dormitorio en suite, dormitorio de servicio, baño social, quincho, patio amplio, piscina. PA: 2 dormitorios, 1 baño compartido.", "photoIds": ["676135d48cef548378a2a005eb46fed9", "650c652d317832bdff0a19c90d1d347e", "eca8abf7acd78cdf774ecc2aa4848250", "b100653253b75a71bc02d41e10b420f4", "c88760a5df01ae1eedaecf81c265f7cd", "f77433f194f2107911e96758d1af75be", "0a31d2b9113a32ee08ef65518f11d81a", "4382e2c878afbca59543fab0cdc7076c", "f074e15e7a09cb1bc9945126ba0738c0", "b209128e3c328a5549cb0041d7b60c18"], "price": 680000000, "status": "disponible", "title": "Casa en San Lorenzo", "id": "qhr0xb3h02g8l2i9o44e"}, {"address": "Barrio Posta Ybycuá, a 1 cuadra de la Av. José Asunción Flores", "createdAt": 1790363498700, "currency": "Gs", "lat": -25.4105609, "lng": -57.4715461, "mapsUrl": "https://maps.app.goo.gl/Vj3EE8kr3JgtcS8D6?g_st=awb", "notes": "Terreno 13,50x27m (365m² totales), 80m² construidos (10x8). 2 dormitorios (1 con detalles a terminar), cocina comedor, patio amplio, cochera para varios vehículos.", "photoIds": ["d68d73ef3f8e93f6ae988bf9555654ea", "70bcdaff7af084030a4b6a530d727397", "e8e87a712e822fb2fcc66e34c3c7aed5", "5289bcbdf489b1d852cf0f197afd4ee3", "039cfe40cecac9a04d85b86c27bfe7b2", "3d7a6ab3a2f9b806af57759241d98c15", "6d76d75a1f83be40721a15780bf4278a", "3fca30bd5200a41409f88d0600c13b91", "5e7aee7bb64f9d47dad0f854b859d143", "cce8dfd31226875d3aba2f56cbb70f02"], "price": 290000000, "status": "disponible", "title": "Casa en Capiatá", "id": "398032cnrbvnxu8lrf94"}, {"address": "Fernando de la Mora, Zona Sur, a pasos de la Avda. 11 de Septiembre", "createdAt": 1790363339339, "currency": "Gs", "lat": -25.3386206, "lng": -57.553559, "mapsUrl": "https://maps.app.goo.gl/Hg2ngxdfTtDFyUTb9?g_st=awb", "notes": "Superficie 360m². Hall de acceso, amplio living/comedor, cocina, 3 dormitorios, 2 baños, galería/quincho, área de servicio.", "photoIds": ["39700c501df2ecdec3dcd3b0bbccc914", "b06889ab033fc1c39fb2b5e1792111ec", "0ea760067ec6f75cdd3f5594c8e3e1f0", "cff5c894f2aa4ee320a52b70b1bc1302", "ebdfe6f4bd41f0f6fdb5cc7603fd9e1f", "a6b8e67d1bfbcc94b7b5bd72c5b04c9e", "4b9ed0ae2e0b0df62b29b43eea036e69", "06e3d8b111ce4423476762dc8190e115", "3ab7da7ea94dfcfc56926473781a9150", "9434233081ac23d20cfce8bee4d9225d"], "price": 750000000, "status": "disponible", "title": "Amplia Casa en Fernando de la Mora – Zona Sur", "id": "kcj7sj01dcgbpclhos5l"}, {"address": "Avelino Martínez, San Lorenzo", "createdAt": 1790363159574, "currency": "Gs", "lat": -25.3645553, "lng": -57.552341, "mapsUrl": "https://maps.app.goo.gl/e373KXfNwofRwKDR9?g_st=awb", "notes": "Terreno amurallado, 12x30m, superficie total 360m². Título listo para transferir.", "photoIds": ["8354f3580e57a3c8243c1ece0917f139", "52084e8c45e68f5c419e966ee5dfbdd4", "a903b565ad24687240511dd7d1e3c6d4", "167d6d5225c4163791a00db8e230a125"], "price": 280000000, "status": "disponible", "title": "Terreno Amurallado en San Lorenzo", "id": "gqdzshh7gxds2y2y98u9"}, {"address": "Barrio Cristóbal Colón, San Bernardino", "createdAt": 1790362753821, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "2 terrenos juntos, superficie aprox. 840m² (28x29m aprox.), a 200m de Avda. Guillermo Naumann, zona residencial. Ideal para vivienda permanente, casa de verano o desarrollo inmobiliario.", "photoIds": ["5f3b8c1743705f953c36487ac8a2c575", "97ff9c16770b59446120a51ce72f53cf", "e1776abe94f2df674bad725a606f342f", "9dfd21f498586ae405353b6862c96780", "63f6de8a8ee38be29779abf9d2782248", "4ca4ec69ca2092ffc3bc9724790ad1c8", "043fb103af1c5832db92e0e54efad3ed", "8f46cae3e958730820032b9947d45d79"], "price": 110000, "status": "disponible", "title": "2 Terrenos en San Bernardino - Barrio Cristóbal Colón", "id": "ofg5v7cjtjl2kmutkc9a"}, {"address": "San Bernardino", "createdAt": 1790362136288, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "Terreno 26x28m (728m² totales), 595m² construidos. Planta alta: 3 dormitorios en suite, amplio estar íntimo, A/A 24.000 BTU. Planta baja: living comedor amplio, cocina equipada con desayunador americano, 1 dormitorio en suite, lavadero/sauna/baño de servicio, living-comedor y baño social. Piscina 65m² (1,80m profundidad) con hidromasaje. Estacionamiento techado para varios vehículos, salón climatizado para eventos, sanitarios, kitchenette, generador propio, tanque de agua 2.000L, circuito cerrado.", "photoIds": ["48819308920cd4d1c6cb8678f6be0c21", "48235af5666d6acf9c13da42d5705822", "1ebe0baf49cdd4f927f3c00850fca2f1", "07d87e9e23ffc96aff9e55417dce149d", "627274dd3bb77f4a83507b5d134d8241", "3c1737320ff2c503875bcdeb6a438750", "b51907ce01d0d2bd95a6c356e9ecd0c2", "33711f90c9fa841685e367ab4dee6c6b", "5b9cc547e197ddedbb945fa1126b95fa", "f1f08a97808a6ef80044e1a508fc4eb3"], "price": 450000, "status": "disponible", "title": "Residencia Premium en San Bernardino", "id": "8m76omiqknrqku0sb4j7"}, {"address": "San Bernardino", "createdAt": 1790355854515, "lat": -25.295385, "lng": -57.30375, "mapsUrl": "https://maps.app.goo.gl/u7biR7SMjmUPJed97?g_st=awb", "notes": "Terreno 364m², construidos 188m². 2 habitaciones amplias en suite, salón multifuncional en planta alta con baño privado, depósito, estacionamiento, piscina con iluminación. Construcción moderna (1 año).", "photoIds": ["7f21a636f7c27c127f32e1720b5e4722", "010cff554180f0a123d9c307885e6c1a", "8b3566c530d49c53f68407876a3f77b1", "d61af97887bc5bbcfb11ff3b3c7b1f36"], "price": 290000, "status": "disponible", "title": "Moderna Residencia San Bernardino", "id": "iwpdycvbrzbposxgqwsc"}, {"address": "Dr. Francisco Morra 375, Asunción – a pasos de la calle Andrade", "createdAt": 1790355497568, "mapsUrl": "https://maps.app.goo.gl/6ZPtqrTNTgkn1RDe6", "notes": "Terreno 600m², construida 500m², 5 dormitorios (4 en suite), 5 baños, 3 estacionamientos. PB: sala y comedor social, baño social, habitación de huéspedes, estar/TV, comedor diario, cocina equipada, quincho con parrilla. PA: 4 habitaciones en suite, hall central con buena iluminación.", "photoIds": ["acb560b3cf7c54cc21c5d326088dc43d", "2174f7850e8e1e23978199e952097d36", "464fa885de27b42f9a7bf2b0797597bb", "991f6332608578a19f3876f748158059"], "price": 800000, "status": "disponible", "title": "Exclusiva Residencia en el Barrio Villa Morra", "id": "u0q1eivrfubobnwxi8x9"}];</script>
+<script>
+
+const $ = id => document.getElementById(id);
+let db=null, assetsApi=null, downloadsApi=null, canWrite=false, clientView=false;
+let properties=[], currentView='grid', typeFilter='';
+let editingId=null, editingPhotoIds=[], currentDetail=null, detailIdx=0;
+
+// Número de WhatsApp de contacto (formato internacional, sin + ni espacios). Vacío = sin botón.
+const WHATSAPP_NUMBER = "595981869933";
+
+const ZONES = [
+  {name:'Villa Morra', city:'Asunción', re:/villa morra/i},
+  {name:'Las Mercedes', city:'Asunción', re:/las mercedes|mercedia/i},
+  {name:'Asunción', city:'Asunción', re:/asunci[oó]n|zona centro/i},
+  {name:'Fernando de la Mora', city:'Fernando de la Mora', re:/fernando de la mora|fdo\.? ?sur|zavala/i},
+  {name:'San Lorenzo', city:'San Lorenzo', re:/san lorenzo/i},
+  {name:'Luque', city:'Luque', re:/luque/i},
+  {name:'Limpio', city:'Limpio', re:/limpio/i},
+  {name:'Ñemby', city:'Ñemby', re:/ñemby/i},
+  {name:'Capiatá', city:'Capiatá', re:/capiat[aá]/i},
+  {name:'Itauguá', city:'Itauguá', re:/itaugu[aá]/i},
+  {name:'Itá', city:'Itá', re:/\bit[aá](?![\wáéíóúñ])/i},
+  {name:'Villeta', city:'Villeta', re:/villeta/i},
+  {name:'Villa Elisa', city:'Villa Elisa', re:/villa elisa/i},
+  {name:'San Bernardino', city:'San Bernardino', re:/san bernardino|puerta del lago/i},
+  {name:'Surubi’i', city:'Mariano R. Alonso', re:/surubi/i},
+  {name:'Barrio San Pablo', city:'Asunción', re:/san pablo/i},
+  {name:'Curuguaty', city:'Curuguaty', re:/curuguaty/i},
+  {name:'Presidente Hayes', city:'Presidente Hayes', re:/pte\.? ?hayes|presidente hayes|pilcomayo/i},
+  {name:'Bajo Chaco', city:'Chaco', re:/bajo chaco|takuara/i},
+  {name:'Ypané', city:'Ypané', re:/ypan[eé]/i},
+  {name:'Itapúa', city:'Itapúa', re:/itap[uú]a|mayor ota[nñ]o/i},
+  {name:'Minga Guazú', city:'Minga Guazú', re:/minga guaz[uú]/i},
+  {name:'Arroyos y Esteros', city:'Cordillera', re:/arroyos y esteros/i},
+  {name:'Lambaré', city:'Lambaré', re:/lambar[eé]/i},
+  {name:'Nueva Italia', city:'Central', re:/nueva italia/i},
+  {name:'San Antonio', city:'Central', re:/san antonio/i},
+  {name:'Santa Rita', city:'Alto Paraná', re:/santa rita/i},
+  {name:'Ybycuí', city:'Paraguarí', re:/ybycu[ií]/i},
+  {name:'Yaguarón', city:'Paraguarí', re:/yaguar[oó]n/i},
+  {name:'Paraguarí', city:'Paraguarí', re:/paraguar[ií]/i},
+  {name:'Caaguazú', city:'Caaguazú', re:/caaguaz[uú]/i},
+  {name:'Boquerón', city:'Boquerón', re:/boquer[oó]n|estigarribia/i},
+  {name:'Villa Oliva', city:'Ñeembucú', re:/villa oliva|[ñn]eembuc[uú]/i}
+];
+const MAP_REFS = [
+  {name:'Asunción', lat:-25.2637, lng:-57.5759}, {name:'Luque', lat:-25.2699, lng:-57.4854},
+  {name:'San Lorenzo', lat:-25.3400, lng:-57.5200}, {name:'Ñemby', lat:-25.3899, lng:-57.5350},
+  {name:'Fdo. de la Mora', lat:-25.3200, lng:-57.5600}, {name:'Capiatá', lat:-25.3547, lng:-57.4453},
+  {name:'Itauguá', lat:-25.3958, lng:-57.3556}, {name:'Itá', lat:-25.5064, lng:-57.3611},
+  {name:'Villeta', lat:-25.5093, lng:-57.5666}, {name:'Villa Elisa', lat:-25.3676, lng:-57.5927},
+  {name:'M. R. Alonso', lat:-25.1927, lng:-57.5322}, {name:'San Bernardino', lat:-25.3208, lng:-57.2939}
+];
+
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function cur(p){ return p.currency==='Gs' ? 'Gs' : 'USD'; }
+function money(p){
+  if(p.price===null || p.price===undefined || p.price==='' || isNaN(Number(p.price))) return '';
+  const f = Number(p.price).toLocaleString('es-PY');
+  return (cur(p)==='Gs' ? 'Gs. '+f : 'USD '+f) + (p.priceUnit ? ' / '+p.priceUnit : '');
+}
+function zoneOf(p){
+  const z = ZONES.find(z=>z.re.test(p.title||'')) || ZONES.find(z=>z.re.test(p.address||''));
+  return z ? z.name : '';
+}
+function typeOf(p){
+  if(p.type) return p.type;
+  const t = (p.title||'').toLowerCase();
+  if(/terreno/.test(t)) return 'Terreno';
+  if(/departamento|monoambiente/.test(t)) return 'Departamento';
+  if(/dep[oó]sito|tinglado|local|sal[oó]n comercial/.test(t)) return 'Comercial';
+  const n = (p.notes||'').toLowerCase();
+  if(!/dormitorio|habitaci|dependencia|suite/.test(n) && /superficie total/.test(n)) return 'Terreno';
+  return 'Casa';
+}
+const TYPE_PLURAL = {Casa:'Casas', Departamento:'Departamentos', Terreno:'Terrenos', Campo:'Campos', Comercial:'Comercial'};
+function facts(p){
+  const text = (p.notes||'');
+  const out = {};
+  const ha = text.match(/(\d[\d.,]*)\s*(?:hect[aá]reas|has?)\b/i);
+  let m = ha ? null : (text.match(/terreno[^.]*?\(?\s*(\d[\d.,]*)\s?m²/i) || text.match(/superficie(?: total)?:?\s*(?:aprox\.?\s*)?(\d[\d.,]*)\s?m²/i) || text.match(/(\d[\d.,]*)\s?m²\s*(?:totales|de superficie|superficie)/i) || text.match(/(\d[\d.,]*)\s?m²/i));
+  if(ha) out.m2 = ha[1]+' ha';
+  else if(m) out.m2 = m[1].replace(/,\d+$/,'')+' m²';
+  const b = text.match(/construid[oa]s?\s*(?:aprox\.?\s*)?(\d[\d.,]*)\s?m²/i) || text.match(/(\d[\d.,]*)\s?m²\s*construid/i) || text.match(/construcci[oó]n:?\s*aprox\.?\s*(\d[\d.,]*)\s?m²/i);
+  if(b) out.built = b[1]+' m²';
+  const tr = (p.title||'').match(/(\d+)\s*(dormitorios?|habitaciones?)/i);
+  const sum = re => [...text.matchAll(re)].reduce((s,m)=>s+Number(m[1]),0);
+  const rooms = tr ? Number(tr[1]) : Math.max(sum(/(\d+)\s*dormitorios?/gi), sum(/(\d+)\s*habitaciones?/gi));
+  if(rooms) out.rooms = String(rooms);
+  const ba = text.match(/(\d+)\s*baños?\b(?!\s*con)/i);
+  if(ba) out.baths = ba[1];
+  return out;
+}
+function factsLine(p){
+  const f = facts(p), parts=[];
+  if(f.m2) parts.push(f.m2);
+  if(f.rooms) parts.push(f.rooms+' dorm.');
+  if(f.baths) parts.push(f.baths+(f.baths==='1'?' baño':' baños'));
+  return parts.join(' · ');
+}
+const isEditor = () => canWrite && !clientView;
+
+function init(){ properties = window.PROPERTIES; renderZones(); renderCounts(); renderChips(); render(); }
+
+function renderCounts(){
+  const by = {};
+  properties.forEach(p=>{ const t=typeOf(p); by[t]=(by[t]||0)+1; });
+  const zones = new Set(properties.map(zoneOf).filter(Boolean));
+  const cells = [['Propiedades', properties.length], ['Casas', by.Casa||0], ['Terrenos y campos', (by.Terreno||0)+(by.Campo||0)], ['Zonas', zones.size]];
+  $('counts').innerHTML = cells.map(([l,n])=>`<div class="count"><b>${n}</b><span>${l}</span></div>`).join('');
+}
+function renderChips(){
+  const by = {}; properties.forEach(p=>{ const t=typeOf(p); by[t]=(by[t]||0)+1; });
+  const opts = [['', 'Todas', properties.length]].concat(['Casa','Departamento','Terreno','Campo','Comercial'].filter(t=>by[t]).map(t=>[t, TYPE_PLURAL[t], by[t]]));
+  $('typeChips').innerHTML = opts.map(([v,l,n])=>`<button class="chip" data-type="${v}" aria-pressed="${typeFilter===v}">${l}${properties.length?`<small>${n}</small>`:''}</button>`).join('');
+  $('typeChips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{ typeFilter=b.dataset.type; renderChips(); render(); });
+}
+function renderZones(){
+  const sel = $('filterZone'), keep = sel.value;
+  const zones = [...new Set(properties.map(zoneOf).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
+  sel.innerHTML = '<option value="">Todas las zonas</option>' + zones.map(z=>`<option value="${esc(z)}">${esc(z)}</option>`).join('');
+  sel.value = zones.includes(keep) ? keep : '';
+}
+
+function getFiltered(){
+  const q = ($('searchInput').value||'').trim().toLowerCase();
+  const z = $('filterZone').value, c = $('filterCurrency').value, s = $('sortSelect').value;
+  let list = properties.filter(p=>{
+    if(typeFilter && typeOf(p)!==typeFilter) return false;
+    if(z && zoneOf(p)!==z) return false;
+    if(c && cur(p)!==c) return false;
+    if(q){ const hay=((p.title||'')+' '+(p.address||'')+' '+(p.notes||'')+' '+zoneOf(p)).toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  });
+  const val = p => (p.price==null||isNaN(Number(p.price))) ? null : Number(p.price) * (cur(p)==='Gs' ? 1/7800 : 1);
+  if(s==='precio_asc') list.sort((a,b)=>(val(a)??Infinity)-(val(b)??Infinity));
+  else if(s==='precio_desc') list.sort((a,b)=>(val(b)??-Infinity)-(val(a)??-Infinity));
+  else if(s==='destacadas') list.sort((a,b)=>{
+    const pa=(a.photoIds||[]).length>0, pb=(b.photoIds||[]).length>0;
+    if(pa!==pb) return pa?-1:1;
+    const st = x => x.status==='vendida'?2:x.status==='reservada'?1:0;
+    if(st(a)!==st(b)) return st(a)-st(b);
+    return (b.createdAt||0)-(a.createdAt||0);
+  });
+  return list;
+}
+
+function render(){
+  const list = getFiltered();
+  $('resultCount').textContent = properties.length ? (list.length===1 ? '1 propiedad' : list.length+' propiedades') : '';
+  const grid = currentView==='grid';
+  $('grid').hidden = !grid; $('mapWrap').hidden = grid;
+  $('viewGridBtn').setAttribute('aria-pressed', String(grid));
+  $('viewMapBtn').setAttribute('aria-pressed', String(!grid));
+  if(grid) renderGrid(list); else renderMap(list);
+}
+
+const HOUSE_SVG = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.2 10.3V20h13.6v-9.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function renderGrid(list){
+  const g = $('grid');
+  if(!properties.length){ g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h2>Todavía no hay propiedades</h2><p>'+'Pronto vas a encontrar acá nuestras propiedades.'+'</p></div>'; return; }
+  if(!list.length){ g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><h2>Sin resultados</h2><p>Ninguna propiedad coincide con esos filtros. Probá con otra zona o tipo.</p></div>'; return; }
+  g.innerHTML='';
+  list.forEach(p=>{
+    const photos = p.photoIds||[];
+    const b = document.createElement('button');
+    b.className='card'; b.type='button';
+    const st = p.status && p.status!=='disponible' ? `<span class="tag ${p.status}">${p.status==='reservada'?'Reservada':'Vendida'}</span>` : '<span></span>';
+    const price = money(p);
+    b.innerHTML = `<div class="card-media">${photos[0]?`<img loading="lazy" src="fotos/${photos[0]}.jpg" alt="">`:`<div class="no-photo">${HOUSE_SVG}<span>Fotos en preparación</span></div>`}
+      <div class="card-tags"><span class="tag">${typeOf(p)}</span>${st}</div>
+      ${photos.length>1?`<span class="photo-count">${photos.length} fotos</span>`:''}</div>
+      <div class="card-body"><span class="card-zone">${esc(zoneOf(p)||'Paraguay')}</span>
+      <h3 class="card-title">${esc(p.title||'Sin título')}</h3>
+      <div class="card-foot"><span class="facts">${esc(factsLine(p))}</span><span class="price ${price?'':'ask'}">${price||'Consultar'}</span></div></div>`;
+    b.onclick = ()=>openDetail(p);
+    g.appendChild(b);
+  });
+}
+
+function renderMap(list){
+  const v = $('mapView'); v.innerHTML='';
+  const pts = list.filter(p=>typeof p.lat==='number' && typeof p.lng==='number' && !isNaN(p.lat) && !isNaN(p.lng));
+  const missing = list.length - pts.length;
+  $('mapNote').textContent = 'Mapa de referencia por zonas. Tocá un punto para ver la propiedad.' + (missing>0 ? ` ${missing} ${missing===1?'propiedad no tiene':'propiedades no tienen'} coordenadas y no ${missing===1?'aparece':'aparecen'} en el mapa.` : '');
+  const all = pts.map(p=>({lat:p.lat,lng:p.lng})).concat(MAP_REFS);
+  let minLat=Math.min(...all.map(p=>p.lat)), maxLat=Math.max(...all.map(p=>p.lat)), minLng=Math.min(...all.map(p=>p.lng)), maxLng=Math.max(...all.map(p=>p.lng));
+  const pl=(maxLat-minLat)*.12||.05, pg=(maxLng-minLng)*.12||.05; minLat-=pl; maxLat+=pl; minLng-=pg; maxLng+=pg;
+  const xy=(lat,lng)=>[((lng-minLng)/(maxLng-minLng))*100, (1-(lat-minLat)/(maxLat-minLat))*100];
+  MAP_REFS.forEach(r=>{ const [x,y]=xy(r.lat,r.lng); v.insertAdjacentHTML('beforeend', `<div class="map-ref" style="left:${x}%;top:${y}%"></div><div class="map-ref-label" style="left:${x}%;top:${y}%">${esc(r.name)}</div>`); });
+  pts.forEach(p=>{
+    const [x,y]=xy(p.lat,p.lng);
+    const pin=document.createElement('button'); pin.type='button';
+    pin.className='map-pin '+(p.status||''); pin.style.left=x+'%'; pin.style.top=y+'%';
+    pin.setAttribute('aria-label', p.title||'Propiedad');
+    const ph = (p.photoIds||[])[0];
+    pin.innerHTML = `<div class="dot"></div><div class="tip">${ph?`<img src="fotos/${ph}.jpg" alt="">`:''}<b>${esc(p.title||'')}</b><br><span style="color:var(--muted)">${esc(money(p)||'Consultar precio')}</span></div>`;
+    pin.onclick=()=>openDetail(p);
+    v.appendChild(pin);
+  });
+}
+
+/* Detail */
+function openDetail(p){ currentDetail=p; detailIdx=0; fillDetail(); $('detailOverlay').hidden=false; document.body.style.overflow='hidden'; }
+function closeDetail(){ $('detailOverlay').hidden=true; document.body.style.overflow=''; }
+function fillDetail(){
+  const p = currentDetail, photos = p.photoIds||[];
+  if(detailIdx>=photos.length) detailIdx=0;
+  $('d_zone').textContent = [typeOf(p), zoneOf(p)].filter(Boolean).join(' · ');
+  $('d_title').textContent = p.title||'Sin título';
+  $('d_price').textContent = money(p) || 'Precio a consultar';
+  const f = facts(p);
+  const cells = [[f.m2,'Superficie'],[f.built,'Construido'],[f.rooms,'Dormitorios'],[f.baths,'Baños']].filter(c=>c[0]);
+  $('d_facts').innerHTML = cells.map(([v,l])=>`<div class="d-fact"><b>${esc(v)}</b><span>${l}</span></div>`).join('');
+  $('d_facts').hidden = !cells.length;
+  $('d_notes').textContent = p.notes||'';
+  $('d_addr').textContent = p.address||'';
+  $('d_maps').hidden = !p.mapsUrl; if(p.mapsUrl) $('d_maps').href = p.mapsUrl;
+  if(WHATSAPP_NUMBER){
+    const msg = encodeURIComponent('Hola! Vi en el catálogo de Innovation Trading la propiedad "'+(p.title||'')+'" y me gustaría más información.');
+    $('waBtn').href='https://wa.me/'+WHATSAPP_NUMBER+'?text='+msg; $('waBtn').hidden=false;
+  } else $('waBtn').hidden=true;
+  renderDetailMedia();
+}
+function renderDetailMedia(){
+  const photos = currentDetail.photoIds||[];
+  const hero = $('dHero');
+  if(!photos.length){ hero.innerHTML = `<div class="no-photo">${HOUSE_SVG}<span>Fotos en preparación</span></div>`; hero.style.cursor='default'; $('dThumbs').hidden=true; return; }
+  hero.style.cursor='zoom-in';
+  hero.innerHTML = `<img src="fotos/${photos[detailIdx]}.jpg" alt="Foto ${detailIdx+1} de ${photos.length}">` + (photos.length>1?'<button class="d-nav d-prev" aria-label="Foto anterior">‹</button><button class="d-nav d-next" aria-label="Foto siguiente">›</button>':'');
+  hero.querySelector('img').onclick = ()=>openLightbox(photos.map(id=>'fotos/'+id+'.jpg'), detailIdx);
+  const pr = hero.querySelector('.d-prev'), nx = hero.querySelector('.d-next');
+  if(pr){ pr.onclick=e=>{e.stopPropagation(); detailIdx=(detailIdx-1+photos.length)%photos.length; renderDetailMedia();}; nx.onclick=e=>{e.stopPropagation(); detailIdx=(detailIdx+1)%photos.length; renderDetailMedia();}; }
+  const th = $('dThumbs'); th.hidden = photos.length<2;
+  th.innerHTML = photos.map((id,i)=>`<button data-i="${i}" aria-current="${i===detailIdx}" aria-label="Foto ${i+1}"><img loading="lazy" src="fotos/${id}.jpg" alt=""></button>`).join('');
+  th.querySelectorAll('button').forEach(b=>b.onclick=()=>{ detailIdx=Number(b.dataset.i); renderDetailMedia(); });
+}
+
+/* Lightbox */
+let lbUrls=[], lbIdx=0;
+function openLightbox(urls, i){ lbUrls=urls; lbIdx=i; renderLb(); $('lightbox').hidden=false; }
+function renderLb(){ $('lbImg').src=lbUrls[lbIdx]; const m=lbUrls.length>1; $('lbPrev').hidden=!m; $('lbNext').hidden=!m; $('lbCount').textContent = m ? (lbIdx+1)+' / '+lbUrls.length : ''; }
+$('lbClose').onclick=()=>$('lightbox').hidden=true;
+$('lbPrev').onclick=()=>{ lbIdx=(lbIdx-1+lbUrls.length)%lbUrls.length; renderLb(); };
+$('lbNext').onclick=()=>{ lbIdx=(lbIdx+1)%lbUrls.length; renderLb(); };
+$('lightbox').addEventListener('click', e=>{ if(e.target.id==='lightbox') $('lightbox').hidden=true; });
+
+document.addEventListener('keydown', e=>{
+  if(!$('lightbox').hidden){ if(e.key==='Escape') $('lightbox').hidden=true; if(e.key==='ArrowLeft') $('lbPrev').click(); if(e.key==='ArrowRight') $('lbNext').click(); return; }
+  if(e.key==='Escape'){ if(!$('detailOverlay').hidden) closeDetail();  }
+});
+['detailOverlay'].forEach(id=>$(id).addEventListener('click', e=>{ if(e.target.id===id){ if(id==='detailOverlay') closeDetail(); else $(id).hidden=true; } }));
+
+/* Wiring */
+$('closeDetailBtn').onclick=closeDetail;
+$('searchInput').oninput=render; $('filterZone').onchange=render; $('filterCurrency').onchange=render; $('sortSelect').onchange=render;
+$('viewGridBtn').onclick=()=>{ currentView='grid'; render(); };
+$('viewMapBtn').onclick=()=>{ currentView='map'; render(); };
+
+init();
+
+</script>
+</body>
+</html>
