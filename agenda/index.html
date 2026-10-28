@@ -40,14 +40,23 @@ textarea{width:100%;font:13px/1.45 Manrope,sans-serif;color:var(--ink);backgroun
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:6px}
 .gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:5px;display:block}
 .note{font-size:14px;margin:4px 0 0;white-space:pre-wrap}
+.login{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;text-align:center}
+.login h2{font:600 22px Outfit,sans-serif;margin:0} .login p{color:var(--muted);margin:4px 0 14px}
+.whos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.who{font:inherit;display:flex;flex-direction:column;gap:2px;align-items:center;padding:16px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);cursor:pointer}
+.who b{font:600 20px Outfit,sans-serif} .who span{font-size:13px;color:var(--muted)} .who:hover{border-color:var(--brand)}
+.userbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.link{font:inherit;font-weight:600;background:none;border:0;color:var(--brand);cursor:pointer;text-decoration:underline;padding:0}
 .lesson{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px}
 .lesson p{white-space:pre-wrap;margin:6px 0 0;font-size:14px}
 button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 </style></head><body><div class="wrap">
-<header><div><div class="eyebrow">Innovation Trading · Publicaciones</div><h1>Agenda del equipo</h1></div><div class="stamp">Actualizado: 28 oct 09:03</div></header>
-<div class="intro">Elegí tu nombre. En cada propiedad tocá <b>Texto y fotos para publicar</b>: copiás el texto, guardás las fotos y lo publicás en Marketplace y en los grupos. Cuando termines una, avisale a José para marcarla como hecha. <b>Nunca</b> poner el teléfono del dueño, solo el WhatsApp +595 994 746226.</div>
-<nav class="tabs"><button type="button" class="tab" data-p="José">José <span>17</span></button><button type="button" class="tab" data-p="Margarita">Margarita <span>18</span></button><button type="button" class="tab" data-p="Carlos">Carlos <span>18</span></button><button type="button" class="tab" data-p="Equipo">Equipo <span>7</span></button><button type="button" class="tab" data-p="Lecciones">Cómo publicar</button></nav>
-<section class="person" id="p-José" hidden><div class="phead"><h2>José</h2><span>17 pendientes · 19 en total</span></div><article class="task">
+<header><div><div class="eyebrow">Innovation Trading · Publicaciones</div><h1>Agenda del equipo</h1></div><div class="stamp">Actualizado: 28 oct 09:06</div></header>
+<div class="intro">En cada propiedad tocá <b>Texto y fotos para publicar</b>: copiás el texto, guardás las fotos y lo publicás en Marketplace y en los grupos. Cuando termines una, avisale a José para marcarla como hecha. <b>Nunca</b> poner el teléfono del dueño, solo el WhatsApp +595 994 746226.</div>
+<div id="login" class="login"><h2>¿Quién sos?</h2><p>Elegí tu nombre para ver solo tus publicaciones.</p><div class="whos"><button type="button" class="who" data-p="José"><b>José</b><span>17 pendientes</span></button><button type="button" class="who" data-p="Margarita"><b>Marga</b><span>18 pendientes</span></button><button type="button" class="who" data-p="Carlos"><b>Carlos</b><span>18 pendientes</span></button></div></div>
+<div id="app" hidden><div class="userbar"><span>Hola, <b id="uname"></b></span><button type="button" id="logout" class="link">Cambiar de usuario</button></div>
+<nav class="tabs"><button type="button" class="tab" data-v="mine">Mis publicaciones</button><button type="button" class="tab" data-v="Lecciones">Cómo publicar</button></nav>
+<section class="person" id="p-José" hidden><div class="phead"><h2>Mis publicaciones</h2><span>17 pendientes · 19 en total</span></div><article class="task">
 <div class="thumb"><img src="../fotos/39700c501df2ecdec3dcd3b0bbccc914.jpg" alt="" loading="lazy"></div>
 <div class="info"><div class="top"><span class="date">mié 28 oct</span></div>
 <h3>Amplia Casa en Fernando de la Mora – Zona Sur</h3>
@@ -380,7 +389,7 @@ Ubicación: https://maps.app.goo.gl/XiACVCT3XagsDtU36?g_st=awb
 
 Consultas por WhatsApp +595 994 746226</textarea>
 <button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/292385190de04beb4bec217800845081.jpg" target="_blank" rel="noopener"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" target="_blank" rel="noopener"><img src="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" target="_blank" rel="noopener"><img src="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" target="_blank" rel="noopener"><img src="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" target="_blank" rel="noopener"><img src="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" target="_blank" rel="noopener"><img src="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" target="_blank" rel="noopener"><img src="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" target="_blank" rel="noopener"><img src="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" target="_blank" rel="noopener"><img src="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" alt="Foto 9" loading="lazy"></a></div></details></div></article></section><section class="person" id="p-Margarita" hidden><div class="phead"><h2>Margarita</h2><span>18 pendientes · 18 en total</span></div><article class="task">
+<div class="gal"><a href="../fotos/292385190de04beb4bec217800845081.jpg" target="_blank" rel="noopener"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" target="_blank" rel="noopener"><img src="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" target="_blank" rel="noopener"><img src="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" target="_blank" rel="noopener"><img src="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" target="_blank" rel="noopener"><img src="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" target="_blank" rel="noopener"><img src="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" target="_blank" rel="noopener"><img src="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" target="_blank" rel="noopener"><img src="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" target="_blank" rel="noopener"><img src="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" alt="Foto 9" loading="lazy"></a></div></details></div></article></section><section class="person" id="p-Margarita" hidden><div class="phead"><h2>Mis publicaciones</h2><span>18 pendientes · 18 en total</span></div><article class="task">
 <div class="thumb"><img src="../fotos/3dc237915a310211be6ba5730e24b481.jpg" alt="" loading="lazy"></div>
 <div class="info"><div class="top"><span class="date">mié 28 oct</span></div>
 <h3>Exclusiva Propiedad en Surubi&#x27;i - Zona Alta</h3>
@@ -679,7 +688,7 @@ Superficie de 5.900 hectáreas con costa al Río Paraguay, a 200 km de Asunción
 
 Consultas por WhatsApp +595 994 746226</textarea>
 <button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/ea5c4311375a43fe84035e3224693f0b.jpg" target="_blank" rel="noopener"><img src="../fotos/ea5c4311375a43fe84035e3224693f0b.jpg" alt="Foto 1" loading="lazy"></a></div></details></div></article></section><section class="person" id="p-Carlos" hidden><div class="phead"><h2>Carlos</h2><span>18 pendientes · 18 en total</span></div><article class="task">
+<div class="gal"><a href="../fotos/ea5c4311375a43fe84035e3224693f0b.jpg" target="_blank" rel="noopener"><img src="../fotos/ea5c4311375a43fe84035e3224693f0b.jpg" alt="Foto 1" loading="lazy"></a></div></details></div></article></section><section class="person" id="p-Carlos" hidden><div class="phead"><h2>Mis publicaciones</h2><span>18 pendientes · 18 en total</span></div><article class="task">
 <div class="thumb"><img src="../fotos/496be7fbb3602049a6e536fd7a9e6f70.jpg" alt="" loading="lazy"></div>
 <div class="info"><div class="top"><span class="date">mié 28 oct</span></div>
 <h3>Casa en Lambaré – Barrio Puerto Pabla</h3>
@@ -1015,156 +1024,7 @@ Ubicación: https://maps.app.goo.gl/Y7GX1U6ALDcoeD1V7?g_st=aw
 
 Consultas por WhatsApp +595 994 746226</textarea>
 <button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/119f8cdc651b05b16de1d467cf705159.jpg" target="_blank" rel="noopener"><img src="../fotos/119f8cdc651b05b16de1d467cf705159.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/c1211efb754efbc5f40c60d50eab1e11.jpg" target="_blank" rel="noopener"><img src="../fotos/c1211efb754efbc5f40c60d50eab1e11.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/0f2f48625ba346143a14591874fb559f.jpg" target="_blank" rel="noopener"><img src="../fotos/0f2f48625ba346143a14591874fb559f.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/b7443b005f8adb731ed9b6657229b613.jpg" target="_blank" rel="noopener"><img src="../fotos/b7443b005f8adb731ed9b6657229b613.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/e780fc3856abad6d6a9c0c49d4a2bcfb.jpg" target="_blank" rel="noopener"><img src="../fotos/e780fc3856abad6d6a9c0c49d4a2bcfb.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/fadfe608d4f4f2391e863e2248d9dba0.jpg" target="_blank" rel="noopener"><img src="../fotos/fadfe608d4f4f2391e863e2248d9dba0.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/ab425cc278f9187fc4ce2436b758f481.jpg" target="_blank" rel="noopener"><img src="../fotos/ab425cc278f9187fc4ce2436b758f481.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/1f296a4cc099365df2614904d8e143bc.jpg" target="_blank" rel="noopener"><img src="../fotos/1f296a4cc099365df2614904d8e143bc.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/dd35a40058d28af32efec0911f00816a.jpg" target="_blank" rel="noopener"><img src="../fotos/dd35a40058d28af32efec0911f00816a.jpg" alt="Foto 9" loading="lazy"></a><a href="../fotos/66b39c90af2ca3331762dad0a72ff45c.jpg" target="_blank" rel="noopener"><img src="../fotos/66b39c90af2ca3331762dad0a72ff45c.jpg" alt="Foto 10" loading="lazy"></a></div></details></div></article></section><section class="person" id="p-Equipo" hidden><div class="phead"><h2>Equipo</h2><span>7 pendientes · 7 en total</span></div><article class="task">
-<div class="thumb"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date late">lun 26 oct</span><span class="pill late">Atrasada</span></div>
-<h3>Propiedad en Barrio San Pablo - Asunción</h3>
-<div class="sub">Publicar la pauta de San Pablo (Gs. 20.000/día) · Gs. 500.000.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>Gs. 500.000.000</b></p>
-<textarea readonly rows="8">Propiedad en Barrio San Pablo - Asunción
-
-Vendo propiedad en Barrio San Pablo, Asunción, a pasos de la Avda. La Victoria.
-
-Características:
-• Superficie: 360 m²
-• Terreno 12 x 30
-• 4 dependencias
-• 2 baños
-• Estacionamiento
-
-Precio: Gs. 500.000.000
-
-Otorgamos carta de oferta con seña.
-Apto para crédito a través de Che Róga Porã.
-Ubicación: https://maps.app.goo.gl/XiACVCT3XagsDtU36?g_st=awb
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/292385190de04beb4bec217800845081.jpg" target="_blank" rel="noopener"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" target="_blank" rel="noopener"><img src="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" target="_blank" rel="noopener"><img src="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" target="_blank" rel="noopener"><img src="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" target="_blank" rel="noopener"><img src="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" target="_blank" rel="noopener"><img src="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" target="_blank" rel="noopener"><img src="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" target="_blank" rel="noopener"><img src="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" target="_blank" rel="noopener"><img src="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" alt="Foto 9" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><img src="../fotos/3429fe59bfa1e3a8c6707c9c082f0200.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date late">mar 27 oct</span><span class="pill late">Atrasada</span></div>
-<h3>Terreno sobre Ruta 3 / Transchaco, Limpio</h3>
-<div class="sub">Confirmar precio del terreno de Limpio (Ruta 3) · USD 13.100.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>USD 13.100.000</b></p>
-<textarea readonly rows="8">Terreno sobre Ruta 3 / Transchaco, Limpio
-
-Terreno estratégico de 43.605 m² ubicado sobre la Ruta 3 / Transchaco, en Limpio. Terreno limpio, medidas aprox.: 95 m, 425 m, 490 m y 81 m.
-
-Ideal para desarrollos de gran escala: loteamiento, centro logístico, depósito, estación de servicio, supermercado, complejo habitacional o proyecto comercial.
-
-Excelente frente sobre ruta, alta visibilidad, acceso rápido y entorno en crecimiento. Ubicación clave, alto potencial, inversión segura.
-
-Precio: USD 13.100.000.
-Ubicación: https://maps.app.goo.gl/Ed1RkTyNvXbgqN176?g_st=awb
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/3429fe59bfa1e3a8c6707c9c082f0200.jpg" target="_blank" rel="noopener"><img src="../fotos/3429fe59bfa1e3a8c6707c9c082f0200.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/232bba3ab014068f2fc256e9ac22d2e1.jpg" target="_blank" rel="noopener"><img src="../fotos/232bba3ab014068f2fc256e9ac22d2e1.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/8a9c0d78ddd7a2d3843d3dc7a747295c.jpg" target="_blank" rel="noopener"><img src="../fotos/8a9c0d78ddd7a2d3843d3dc7a747295c.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/7b761b8f53a3f30e728093a345fc3a3e.jpg" target="_blank" rel="noopener"><img src="../fotos/7b761b8f53a3f30e728093a345fc3a3e.jpg" alt="Foto 4" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date late">mar 27 oct</span><span class="pill late">Atrasada</span></div>
-<h3>Propiedad en Barrio San Pablo - Asunción</h3>
-<div class="sub">Seguimiento a Victor · Gs. 500.000.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>Gs. 500.000.000</b></p>
-<textarea readonly rows="8">Propiedad en Barrio San Pablo - Asunción
-
-Vendo propiedad en Barrio San Pablo, Asunción, a pasos de la Avda. La Victoria.
-
-Características:
-• Superficie: 360 m²
-• Terreno 12 x 30
-• 4 dependencias
-• 2 baños
-• Estacionamiento
-
-Precio: Gs. 500.000.000
-
-Otorgamos carta de oferta con seña.
-Apto para crédito a través de Che Róga Porã.
-Ubicación: https://maps.app.goo.gl/XiACVCT3XagsDtU36?g_st=awb
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/292385190de04beb4bec217800845081.jpg" target="_blank" rel="noopener"><img src="../fotos/292385190de04beb4bec217800845081.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" target="_blank" rel="noopener"><img src="../fotos/48a22e5f043c3c6490f4cf13fb63c686.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" target="_blank" rel="noopener"><img src="../fotos/51a68c1c33644deebb09f8c88f0e22ab.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" target="_blank" rel="noopener"><img src="../fotos/9dc87eb43aab81f2d553b62e7b98e814.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" target="_blank" rel="noopener"><img src="../fotos/3ab30dfd4bf81dcf69e1287383ea4ce8.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" target="_blank" rel="noopener"><img src="../fotos/48b06ecdf66b43bda55aff4a8487987d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" target="_blank" rel="noopener"><img src="../fotos/15ccf9a9df20a25cbe8cd63a7217ceb5.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" target="_blank" rel="noopener"><img src="../fotos/106456e93cd2b745fb2abba4ce5ddbe6.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" target="_blank" rel="noopener"><img src="../fotos/5cfc2892313cdac77811f85ae0231c96.jpg" alt="Foto 9" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><img src="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date">mié 28 oct</span></div>
-<h3>Exclusiva Casa de Verano en Puerta del Lago – San Bernardino</h3>
-<div class="sub">Subir el video de dron de San Bernardino a Marketplace y Reels · USD 320.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>USD 320.000</b></p>
-<textarea readonly rows="8">Exclusiva Casa de Verano en Puerta del Lago – San Bernardino
-
-Superficie 890,86 m². Incluye mobiliario, amenities y equipamiento existente. Casa principal con amplia galería, galería rústica (techo kapi&#x27;i), living principal con mobiliario integrado, comedor full equipped, cocina funcional integrada, 5 dormitorios con placares y mobiliario incorporado, Master Suite con hidromasaje, todos los ambientes climatizados. Amplio patio y áreas verdes, piscina con media sombra, quincho con parrilla y área social exterior, dormitorio independiente y baño social, pergolados. Incluye TV, sistema de sonido, equipos de frío, sillones, reposeras y mobiliario exterior, cuadriciclo, UTV recreativo, mesa de pool y demás equipamiento recreativo. Ideal para disfrute familiar o inversión en zona de veraneo consolidada.
-
-Forma de pago: entrega del 50% y saldo con financiación propia.
-
-Precio: USD 320.000
-Ubicación: https://maps.app.goo.gl/LYQmiS6vVraxx8qc6?g_st=awb
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" target="_blank" rel="noopener"><img src="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/4dc7ab5101b533aa8ba06fb7aa4f79e6.jpg" target="_blank" rel="noopener"><img src="../fotos/4dc7ab5101b533aa8ba06fb7aa4f79e6.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/d3df32247eb445ebb7acb1514247f366.jpg" target="_blank" rel="noopener"><img src="../fotos/d3df32247eb445ebb7acb1514247f366.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/10f27b9510e346cb85631ee06a1ee442.jpg" target="_blank" rel="noopener"><img src="../fotos/10f27b9510e346cb85631ee06a1ee442.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/e556839da7d7a7f6c349d3e4812588e4.jpg" target="_blank" rel="noopener"><img src="../fotos/e556839da7d7a7f6c349d3e4812588e4.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/33a388174f777ca8d0311e7bd70ea03d.jpg" target="_blank" rel="noopener"><img src="../fotos/33a388174f777ca8d0311e7bd70ea03d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/ceb220d917f02c3674feddbedbd0f750.jpg" target="_blank" rel="noopener"><img src="../fotos/ceb220d917f02c3674feddbedbd0f750.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/f7d2623865e5be8a7a97282a8f383ef3.jpg" target="_blank" rel="noopener"><img src="../fotos/f7d2623865e5be8a7a97282a8f383ef3.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/d1f976bc084184317d95b84a3b573d01.jpg" target="_blank" rel="noopener"><img src="../fotos/d1f976bc084184317d95b84a3b573d01.jpg" alt="Foto 9" loading="lazy"></a><a href="../fotos/1902afb48c7142db177ff62a9df83e60.jpg" target="_blank" rel="noopener"><img src="../fotos/1902afb48c7142db177ff62a9df83e60.jpg" alt="Foto 10" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><img src="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date">jue 29 oct</span></div>
-<h3>Exclusiva Casa de Verano en Puerta del Lago – San Bernardino</h3>
-<div class="sub">Decidir si se reactiva la pauta de San Bernardino · USD 320.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>USD 320.000</b></p>
-<textarea readonly rows="8">Exclusiva Casa de Verano en Puerta del Lago – San Bernardino
-
-Superficie 890,86 m². Incluye mobiliario, amenities y equipamiento existente. Casa principal con amplia galería, galería rústica (techo kapi&#x27;i), living principal con mobiliario integrado, comedor full equipped, cocina funcional integrada, 5 dormitorios con placares y mobiliario incorporado, Master Suite con hidromasaje, todos los ambientes climatizados. Amplio patio y áreas verdes, piscina con media sombra, quincho con parrilla y área social exterior, dormitorio independiente y baño social, pergolados. Incluye TV, sistema de sonido, equipos de frío, sillones, reposeras y mobiliario exterior, cuadriciclo, UTV recreativo, mesa de pool y demás equipamiento recreativo. Ideal para disfrute familiar o inversión en zona de veraneo consolidada.
-
-Forma de pago: entrega del 50% y saldo con financiación propia.
-
-Precio: USD 320.000
-Ubicación: https://maps.app.goo.gl/LYQmiS6vVraxx8qc6?g_st=awb
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" target="_blank" rel="noopener"><img src="../fotos/6bece5f8f1a2657058174af5940c0110.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/4dc7ab5101b533aa8ba06fb7aa4f79e6.jpg" target="_blank" rel="noopener"><img src="../fotos/4dc7ab5101b533aa8ba06fb7aa4f79e6.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/d3df32247eb445ebb7acb1514247f366.jpg" target="_blank" rel="noopener"><img src="../fotos/d3df32247eb445ebb7acb1514247f366.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/10f27b9510e346cb85631ee06a1ee442.jpg" target="_blank" rel="noopener"><img src="../fotos/10f27b9510e346cb85631ee06a1ee442.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/e556839da7d7a7f6c349d3e4812588e4.jpg" target="_blank" rel="noopener"><img src="../fotos/e556839da7d7a7f6c349d3e4812588e4.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/33a388174f777ca8d0311e7bd70ea03d.jpg" target="_blank" rel="noopener"><img src="../fotos/33a388174f777ca8d0311e7bd70ea03d.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/ceb220d917f02c3674feddbedbd0f750.jpg" target="_blank" rel="noopener"><img src="../fotos/ceb220d917f02c3674feddbedbd0f750.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/f7d2623865e5be8a7a97282a8f383ef3.jpg" target="_blank" rel="noopener"><img src="../fotos/f7d2623865e5be8a7a97282a8f383ef3.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/d1f976bc084184317d95b84a3b573d01.jpg" target="_blank" rel="noopener"><img src="../fotos/d1f976bc084184317d95b84a3b573d01.jpg" alt="Foto 9" loading="lazy"></a><a href="../fotos/1902afb48c7142db177ff62a9df83e60.jpg" target="_blank" rel="noopener"><img src="../fotos/1902afb48c7142db177ff62a9df83e60.jpg" alt="Foto 10" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><img src="../fotos/acb560b3cf7c54cc21c5d326088dc43d.jpg" alt="" loading="lazy"></div>
-<div class="info"><div class="top"><span class="date">vie 30 oct</span></div>
-<h3>Exclusiva Residencia en el Barrio Villa Morra</h3>
-<div class="sub">Conseguir más fotos de la residencia de Villa Morra · USD 800.000</div>
-<details><summary>Texto y fotos para publicar</summary>
-<p class="hint">1) Tocá <b>Copiar texto</b> y pegalo en la descripción. 2) Abrí cada foto y guardala en el celular. Precio para Marketplace: <b>USD 800.000</b></p>
-<textarea readonly rows="8">Exclusiva Residencia en el Barrio Villa Morra
-
-Exclusiva residencia en Villa Morra, sobre Dr. Francisco Morra 375, a pasos de la calle Andrade.
-
-Detalles del inmueble:
-• Superficie de terreno: 600 m²
-• Superficie construida: 500 m²
-• Dormitorios: 5
-• Baños: 5
-• Estacionamiento para 3 vehículos
-
-Planta baja:
-• Sala y comedor social
-• Baño social
-• Habitación para huéspedes
-• Estar/TV
-• Comedor diario
-• Amplia cocina equipada
-• Espacioso quincho con parrilla
-
-Planta alta:
-• 4 habitaciones en suite (cada una con baño privado)
-• Hall central con excelente iluminación
-
-Inversión: USD 800.000
-Ubicación: https://maps.app.goo.gl/deo3fkoyKepdBt6bA
-
-Consultas por WhatsApp +595 994 746226</textarea>
-<button type="button" class="copy">Copiar texto</button>
-<div class="gal"><a href="../fotos/acb560b3cf7c54cc21c5d326088dc43d.jpg" target="_blank" rel="noopener"><img src="../fotos/acb560b3cf7c54cc21c5d326088dc43d.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/2174f7850e8e1e23978199e952097d36.jpg" target="_blank" rel="noopener"><img src="../fotos/2174f7850e8e1e23978199e952097d36.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/464fa885de27b42f9a7bf2b0797597bb.jpg" target="_blank" rel="noopener"><img src="../fotos/464fa885de27b42f9a7bf2b0797597bb.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/991f6332608578a19f3876f748158059.jpg" target="_blank" rel="noopener"><img src="../fotos/991f6332608578a19f3876f748158059.jpg" alt="Foto 4" loading="lazy"></a></div></details></div></article><article class="task">
-<div class="thumb"><div class="nophoto">Sin foto</div></div>
-<div class="info"><div class="top"><span class="date">sáb 31 oct</span></div>
-<h3>Comprar el dominio de la página (innovationtradingpy.com)</h3>
-<div class="sub"></div>
-<p class="note">Cloudflare Registrar, aprox. USD 10,46 por año. Avisar a Claude cuando esté comprado para conectarlo a la página.</p></div></article></section>
+<div class="gal"><a href="../fotos/119f8cdc651b05b16de1d467cf705159.jpg" target="_blank" rel="noopener"><img src="../fotos/119f8cdc651b05b16de1d467cf705159.jpg" alt="Foto 1" loading="lazy"></a><a href="../fotos/c1211efb754efbc5f40c60d50eab1e11.jpg" target="_blank" rel="noopener"><img src="../fotos/c1211efb754efbc5f40c60d50eab1e11.jpg" alt="Foto 2" loading="lazy"></a><a href="../fotos/0f2f48625ba346143a14591874fb559f.jpg" target="_blank" rel="noopener"><img src="../fotos/0f2f48625ba346143a14591874fb559f.jpg" alt="Foto 3" loading="lazy"></a><a href="../fotos/b7443b005f8adb731ed9b6657229b613.jpg" target="_blank" rel="noopener"><img src="../fotos/b7443b005f8adb731ed9b6657229b613.jpg" alt="Foto 4" loading="lazy"></a><a href="../fotos/e780fc3856abad6d6a9c0c49d4a2bcfb.jpg" target="_blank" rel="noopener"><img src="../fotos/e780fc3856abad6d6a9c0c49d4a2bcfb.jpg" alt="Foto 5" loading="lazy"></a><a href="../fotos/fadfe608d4f4f2391e863e2248d9dba0.jpg" target="_blank" rel="noopener"><img src="../fotos/fadfe608d4f4f2391e863e2248d9dba0.jpg" alt="Foto 6" loading="lazy"></a><a href="../fotos/ab425cc278f9187fc4ce2436b758f481.jpg" target="_blank" rel="noopener"><img src="../fotos/ab425cc278f9187fc4ce2436b758f481.jpg" alt="Foto 7" loading="lazy"></a><a href="../fotos/1f296a4cc099365df2614904d8e143bc.jpg" target="_blank" rel="noopener"><img src="../fotos/1f296a4cc099365df2614904d8e143bc.jpg" alt="Foto 8" loading="lazy"></a><a href="../fotos/dd35a40058d28af32efec0911f00816a.jpg" target="_blank" rel="noopener"><img src="../fotos/dd35a40058d28af32efec0911f00816a.jpg" alt="Foto 9" loading="lazy"></a><a href="../fotos/66b39c90af2ca3331762dad0a72ff45c.jpg" target="_blank" rel="noopener"><img src="../fotos/66b39c90af2ca3331762dad0a72ff45c.jpg" alt="Foto 10" loading="lazy"></a></div></details></div></article></section>
 <section class="person" id="p-Lecciones" hidden><div class="phead"><h2>Cómo publicar</h2></div><article class="lesson"><h3>Controlar cuánto se gasta en pautas</h3><p>Meta cobra a la tarjeta casi a diario cuando hay campañas activas, más IVA 10% (Ley 6380, servicio digital).
 El cobro aparece en el extracto como &#x27;Facebk *xxxx&#x27;.
 Al apagar campañas puede llegar un último cobro con el saldo pendiente.
@@ -1185,14 +1045,27 @@ Si se descargó un .zip, abrirlo con la app de Archivos, &#x27;Extraer&#x27;, y 
 4. Revisar la fecha de inicio: si quedó en el pasado, tocar &#x27;Restablécela a hoy&#x27;.
 5. Carrusel: si da el error &#x27;Falta un vídeo o una imagen dependientes para la secuencia&#x27;, hay una tarjeta sin foto: borrarla con &#x27;Suprimir&#x27;.
 6. Al final: &#x27;Obtener vista previa para publicar&#x27; y Publicar.</p></article></section>
-</div>
+</div></div>
 <script>
+const NAMES={'José':'José','Margarita':'Marga','Carlos':'Carlos'};
+let user=null, view='mine';
 const tabs=[...document.querySelectorAll('.tab')];
-function show(p){tabs.forEach(t=>t.setAttribute('aria-pressed',t.dataset.p===p));document.querySelectorAll('.person').forEach(s=>s.hidden=s.id!=='p-'+p);try{localStorage.setItem('agenda.p',p)}catch(e){}}
-tabs.forEach(t=>t.onclick=()=>show(t.dataset.p));
-let start='José';try{start=localStorage.getItem('agenda.p')||start}catch(e){}
-if(location.hash) start=decodeURIComponent(location.hash.slice(1));
-show(tabs.some(t=>t.dataset.p===start)?start:'José');
+function render(){
+  document.getElementById('login').hidden=!!user; document.getElementById('app').hidden=!user;
+  if(!user) return;
+  document.getElementById('uname').textContent=NAMES[user]||user;
+  tabs.forEach(t=>t.setAttribute('aria-pressed',t.dataset.v===view));
+  const target=view==='mine'?'p-'+user:'p-Lecciones';
+  document.querySelectorAll('.person').forEach(s=>s.hidden=s.id!==target);
+}
+function setUser(p){user=p;try{p?localStorage.setItem('agenda.user',p):localStorage.removeItem('agenda.user')}catch(e){}view='mine';render();window.scrollTo(0,0)}
+document.querySelectorAll('.who').forEach(b=>b.onclick=()=>setUser(b.dataset.p));
+document.getElementById('logout').onclick=()=>setUser(null);
+tabs.forEach(t=>t.onclick=()=>{view=t.dataset.v;render()});
+try{const u=localStorage.getItem('agenda.user');if(u&&NAMES[u])user=u}catch(e){}
+const h=decodeURIComponent(location.hash.slice(1));const alias={'Marga':'Margarita','Jose':'José'};
+if(NAMES[h]||alias[h]) user=alias[h]||h;
+render();
 document.addEventListener('click',async e=>{const b=e.target.closest('.copy');if(!b)return;const ta=b.previousElementSibling;
 try{await navigator.clipboard.writeText(ta.value)}catch(er){ta.select();document.execCommand('copy')}b.textContent='¡Copiado!';setTimeout(()=>b.textContent='Copiar texto',1800)});
 </script></body></html>
