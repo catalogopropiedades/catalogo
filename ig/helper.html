@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>helper</title>
+<body style="font-family:sans-serif">enviando…<script>
+(async()=>{const p=new URLSearchParams(location.search).get('p');const m=await (await fetch('manifest.json')).json();
+const files=[];for(const f of m[p]){const b=await (await fetch(p+'/'+f)).arrayBuffer();files.push({name:p+'-'+f,buf:b})}
+(window.opener||window.parent).postMessage({igfiles:files,p},'https://www.instagram.com');document.body.textContent='listo '+files.length;setTimeout(()=>window.close(),800)})();
+</script>
