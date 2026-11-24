@@ -1,0 +1,5 @@
+<!doctype html><meta charset="utf-8"><title>relay</title><body>relay<script>
+(async()=>{const k=new URLSearchParams(location.search).get('k');const m=await (await fetch('manifest.json')).json();
+const files=[];for(const p of m[k]){const b=await (await fetch(p)).arrayBuffer();files.push({name:p.split('/').join('_'),buf:b});}
+(window.opener||window.parent).postMessage({relay:k,files},'*');document.body.textContent='sent '+files.length;})();
+</script>
